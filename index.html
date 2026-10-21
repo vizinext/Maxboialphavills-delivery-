@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MaxBoi Alphaville — Monte seu pedido</title>
+<meta name="description" content="Escolha seus cortes, monte seu pedido e fale com a MaxBoi Alphaville pelo WhatsApp. Cortes selecionados, preço justo e qualidade de verdade, desde 1989.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#db2c28; --red-logo:#e7312d; --red-dark:#b81f1c; --red-text:#c21f1b;
+  --ink:#111; --ink-2:#3d3d3d; --muted:#666; --line:#e4dfda; --paper:#f7f5f2; --white:#fff; --black:#000;
+  --radius:14px; --shadow:0 6px 22px rgba(0,0,0,.08);
+  --header-h:60px; --bar-h:0px;
+  --f-ui:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-display:'Abril Fatface','Playfair Display',Georgia,serif;
+  --f-serif:'Playfair Display',Georgia,'Times New Roman',serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html.lock{overflow:hidden}
+body{margin:0;font-family:var(--f-ui);font-size:15px;line-height:1.5;color:var(--ink);background:var(--paper);overflow-x:hidden;padding-bottom:var(--bar-h)}
+img{max-width:100%;display:block}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 16px}
+@media(min-width:900px){.wrap{padding:0 32px}}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:999px;border:1.5px solid transparent;font-weight:600;font-size:15px;text-decoration:none;transition:background .15s,transform .1s,border-color .15s;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-dark)}
+.btn-red[disabled]{background:#c9c5c0;color:#fff;cursor:not-allowed}
+.btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.btn-ghost:hover{border-color:#fff}
+.btn-line{background:#fff;color:var(--ink);border-color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:#fff}
+.btn-block{width:100%}
+.btn-sm{min-height:40px;padding:0 16px;font-size:14px}
+.link-btn{background:none;border:0;padding:6px 2px;color:var(--ink-2);text-decoration:underline;font-size:14px}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:#000;color:#fff;height:var(--header-h);transition:height .2s}
+.site-header .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;border:0;background:none;padding:0;flex:none}
+.brand img{height:40px;width:auto;transition:height .2s}
+.site-header.compact{--header-h:52px}
+.site-header.compact .brand img{height:34px}
+.nav{display:none}
+.hdr-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff}
+.icon-btn:hover{border-color:#fff}
+.badge{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;padding:0 5px;border-radius:10px;background:var(--red);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.hdr-search{display:none}
+.cart-total{display:none}
+@media(min-width:900px){
+  :root{--header-h:72px}
+  .site-header.compact{--header-h:58px}
+  .brand img{height:50px}
+  .site-header.compact .brand img{height:38px}
+  .site-header .wrap{display:grid;grid-template-columns:1fr auto 1fr}
+  .nav{display:flex;gap:6px}
+  .nav button{background:none;border:0;color:#fff;padding:10px 16px;font-weight:500;border-radius:999px}
+  .nav button:hover{background:rgba(255,255,255,.12)}
+  .hdr-actions{justify-content:flex-end}
+  .hdr-search{display:flex;align-items:center;gap:8px;background:#161616;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:0 14px;height:44px;width:min(280px,100%)}
+  .hdr-search input{background:none;border:0;outline:0;color:#fff;width:100%;font-size:14px}
+  .hdr-search:focus-within{border-color:#fff}
+  .hdr-search input::placeholder{color:#aaa}
+  .search-toggle{display:none}
+  .cart-btn{white-space:nowrap;width:auto;border-radius:999px;padding:0 16px 0 12px;gap:8px;font-weight:600;font-size:14px;background:var(--red);border-color:var(--red)}
+  .cart-btn:hover{background:var(--red-dark);border-color:var(--red-dark)}
+  .cart-total{display:inline}
+  .badge{position:static;background:#fff;color:var(--red-dark)}
+}
+
+/* Hero */
+.hero{position:relative;background:#000;color:#fff;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:14% 40%;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.15) 0,rgba(0,0,0,.55) 38%,#000 78%)}
+.hero-in{padding:150px 0 28px}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#fff;font-weight:600;display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--red-logo)}
+.hero h1{font-family:var(--f-serif);font-weight:500;font-size:clamp(32px,8.4vw,60px);line-height:1.08;margin:0 0 12px;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:#fff}
+.hero p.sub{margin:0 0 20px;color:#e6e6e6;max-width:46ch;font-size:15px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:10px}
+@media(min-width:900px){
+  .hero{min-height:480px;display:flex;align-items:center}
+  .hero-bg{object-position:left center}
+  .hero::after{background:linear-gradient(90deg,rgba(0,0,0,0) 0,rgba(0,0,0,.25) 34%,#000 66%)}
+  .hero-in{padding:72px 0;margin-left:auto;width:100%}
+  .hero-text{margin-left:auto;width:min(46%,560px)}
+  .hero p.sub{font-size:17px}
+}
+
+/* Entradas */
+.entries{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 0 4px}
+.entry{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:150px;border-radius:var(--radius);overflow:hidden;border:0;padding:14px;text-align:left;color:#fff;background:#000;isolation:isolate;box-shadow:var(--shadow)}
+.entry img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .4s}
+.entry::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.78))}
+.entry:hover img{transform:scale(1.04)}
+.entry[aria-pressed="true"]{outline:3px solid var(--red);outline-offset:-3px}
+.entry b{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.05}
+.entry span{font-size:12px;color:#ddd;margin-top:2px}
+@media(min-width:700px){.entry{min-height:200px;padding:22px}.entry b{font-size:36px}.entry span{font-size:14px}}
+
+/* Catálogo */
+.catalog-head{padding:26px 0 8px}
+.catalog-head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,6vw,40px);line-height:1.1;margin:0 0 4px}
+.price-note{margin:0;font-size:13px;color:var(--muted)}
+.tools{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:12px 0}
+.search{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:0 16px;height:50px}
+.search:focus-within{border-color:var(--ink)}
+.search input{flex:1;border:0;outline:0;background:none;min-width:0;font-size:16px}
+.search .clear-q{background:none;border:0;padding:6px;border-radius:50%;display:none;color:var(--muted)}
+.search.has-q .clear-q{display:inline-flex}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:inline-flex;background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:none;padding:7px 14px;border-radius:999px;font-size:13px;font-weight:500;min-height:36px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:#fff}
+.select{height:42px;min-width:0;max-width:100%;border:1.5px solid var(--line);border-radius:999px;background:#fff;padding:0 36px 0 14px;font-size:13px;font-weight:500;max-width:100%;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23111' stroke-width='1.6'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.count{font-size:13px;color:var(--muted);margin-left:auto}
+.chipbar{position:sticky;top:var(--header-h);z-index:30;background:var(--paper);border-bottom:1px solid var(--line);transition:top .2s}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.chips::-webkit-scrollbar{display:none}
+.cat-chip{flex:none;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:0 16px;min-height:40px;font-size:14px;font-weight:500;white-space:nowrap}
+.cat-chip:hover{border-color:var(--ink)}
+.cat-chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.section{padding:26px 0 4px;scroll-margin-top:calc(var(--header-h) + 64px)}
+.section h3{font-family:var(--f-display);font-weight:400;font-size:28px;line-height:1.1;margin:0;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px}
+.section h3 small{font-family:var(--f-ui);font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.section h3::before{content:"";width:5px;height:24px;background:var(--red-logo);border-radius:2px;align-self:center;margin-right:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:14px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.card-main{display:flex;flex-direction:column;flex:1;text-align:left;background:none;border:0;padding:0;width:100%}
+.card-media{position:relative;display:block;aspect-ratio:4/3;background:#151515;overflow:hidden}
+.card-media img{width:100%;height:100%;object-fit:cover}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.03em;padding:2px 9px;border-radius:999px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+.card-media .tag{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.78);border-color:transparent;color:#fff}
+.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#121212;color:rgba(255,255,255,.55)}
+.ph img{position:absolute;width:62%;height:auto;max-height:80%;object-fit:contain;opacity:.09;filter:grayscale(.2)}
+.ph .icon{position:relative;width:38px;height:38px;stroke-width:1.3}
+.ph small{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.card-body{display:flex;flex-direction:column;gap:2px;padding:12px 12px 8px;flex:1}
+.kicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--red-text);font-weight:600}
+.card-title{font-weight:600;font-size:15px;line-height:1.25;color:var(--ink)}
+.card-sub{font-size:12.5px;color:var(--muted)}
+.price{margin-top:auto;padding-top:8px;display:flex;flex-wrap:wrap;align-items:baseline;gap:0 4px}
+.price small{flex-basis:100%;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.price strong{font-size:20px;font-weight:700;color:var(--ink);white-space:nowrap}
+.price em{font-style:normal;font-size:12.5px;color:var(--muted)}
+.price.consult strong{font-size:14px}
+.btn-add{margin:4px 12px 12px;min-height:44px}
+.empty{text-align:center;padding:48px 16px;background:#fff;border:1px dashed #cfc9c3;border-radius:var(--radius);margin:20px 0}
+.empty h3{font-family:var(--f-display);font-weight:400;font-size:26px;margin:0 0 6px}
+.empty p{margin:0 auto 16px;max-width:44ch;color:var(--ink-2)}
+.empty .row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+
+/* Footer */
+.site-footer{background:#000;color:#fff;margin-top:48px;padding:40px 0 28px}
+.foot-grid{display:grid;gap:28px}
+.site-footer img.flogo{height:56px;width:auto}
+.site-footer h4{margin:0 0 8px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#bbb;font-weight:600}
+.site-footer p{margin:0 0 6px;color:#e8e8e8}
+.site-footer a{color:#fff}
+.foot-line{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
+.foot-line .icon{margin-top:3px;color:var(--red-logo)}
+.tagline{font-family:var(--f-serif);font-size:19px;line-height:1.3;margin:14px 0 0;color:#fff;max-width:30ch}
+.legal{font-size:12.5px;color:#b5b5b5;border-top:1px solid #262626;margin-top:28px;padding-top:18px}
+@media(min-width:800px){.foot-grid{grid-template-columns:1.3fr 1fr 1fr 1fr}}
+
+/* Barra inferior mobile */
+.cart-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#000;box-shadow:0 -6px 20px rgba(0,0,0,.25)}
+.cart-bar button{width:100%;min-height:52px;border:0;border-radius:999px;background:var(--red);color:#fff;font-weight:600;font-size:15px;padding:0 16px;display:flex;align-items:center;justify-content:center;gap:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cart-bar[hidden]{display:none}
+@media(min-width:900px){.cart-bar{display:none!important}}
+
+/* Dialogs */
+.overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.62);display:none;opacity:0;transition:opacity .2s}
+.overlay.open{display:flex}
+.overlay.show{opacity:1}
+.dialog{background:#fff;color:var(--ink);display:flex;flex-direction:column;overflow:hidden;position:relative;transition:transform .25s ease}
+.sheet{align-self:flex-end;width:100%;max-height:94dvh;border-radius:22px 22px 0 0;transform:translateY(40px)}
+.overlay.show .sheet{transform:none}
+.x-btn{position:absolute;top:10px;right:10px;z-index:3;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:#000;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.pm-media{position:relative;flex:none;height:30vh;max-height:240px;min-height:150px;background:#151515}
+.pm-media img.photo{width:100%;height:100%;object-fit:cover}
+.pm-media .ilus{position:absolute;left:10px;bottom:10px;font-size:11px;background:rgba(0,0,0,.7);color:#fff;padding:3px 10px;border-radius:999px}
+.pm-main{display:flex;flex-direction:column;min-height:0;flex:1}
+.pm-scroll{overflow-y:auto;padding:18px 18px 8px;flex:1;overscroll-behavior:contain}
+.pm-scroll h2{font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.1;margin:2px 0 4px}
+.pm-scroll h2:focus{outline:none}
+.pm-brandline{margin:0 0 12px;color:var(--muted);font-size:14px}
+fieldset{border:0;margin:14px 0 0;padding:0;min-width:0}
+legend{font-weight:600;font-size:14px;padding:0;margin-bottom:8px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;min-height:56px}
+.opt input{accent-color:var(--red);width:20px;height:20px;flex:none}
+.opt.sel{border-color:var(--ink);background:#faf8f6;box-shadow:inset 0 0 0 1px var(--ink)}
+.opt-body{flex:1;display:flex;flex-direction:column;gap:2px;font-weight:500;min-width:0}
+.opt-price{font-weight:700;white-space:nowrap;text-align:right}
+.opt-price small{font-weight:500;color:var(--muted)}
+.chips2{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:#fff;border-radius:999px;min-height:44px;padding:0 18px;font-weight:600;font-size:14px}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.field{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:12px;padding:0 14px;background:#fff;min-height:48px}
+.field:focus-within{border-color:var(--ink)}
+.field input{border:0;outline:0;flex:1;min-width:0;background:none;font-size:16px;min-height:44px}
+.field span{color:var(--muted);font-weight:500}
+.field[aria-invalid="true"],.field.bad{border-color:var(--red)}
+label.lbl{display:block;font-weight:600;font-size:14px;margin:12px 0 6px}
+.err{color:#b3140f;font-size:13px;margin:6px 0 0;min-height:0}
+.err:empty{display:none}
+textarea.txt,input.txt,select.txt{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:#fff;font-size:16px;min-height:48px;resize:vertical}
+textarea.txt:focus,input.txt:focus{outline:0;border-color:var(--ink)}
+input.txt.bad,textarea.txt.bad{border-color:var(--red)}
+.sugs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sug{border:1px dashed #b9b2aa;background:#fff;border-radius:999px;padding:6px 12px;font-size:12.5px;min-height:34px}
+.sug:hover{border-style:solid;border-color:var(--ink)}
+.legal-note{font-size:12.5px;color:var(--muted);margin:12px 0 4px}
+.stepper{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:999px;background:#fff}
+.stepper button{width:44px;height:44px;border:0;background:none;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.stepper button:hover{background:#f0ece8}
+.stepper input{width:58px;text-align:center;border:0;outline:0;background:none;font-weight:600;font-size:16px;min-height:44px}
+.stepper .u{margin-right:12px;color:var(--muted);font-size:13px}
+.dlg-foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px calc(12px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:#fff}
+.est{display:flex;flex-direction:column;line-height:1.2;font-size:12px;color:var(--muted)}
+.est strong{font-size:20px;color:var(--ink)}
+@media(min-width:760px){
+  .overlay{align-items:center;justify-content:center;padding:24px}
+  .sheet{align-self:auto;width:min(900px,100%);max-height:min(720px,92vh);border-radius:22px;flex-direction:row;transform:translateY(16px) scale(.98)}
+  .pm-media{height:auto;max-height:none;width:44%;flex:none}
+  .pm-scroll{padding:28px 28px 8px}
+  .dlg-foot{padding:14px 28px}
+}
+
+/* Carrinho */
+.drawer{align-self:flex-end;width:100%;height:96dvh;border-radius:22px 22px 0 0;transform:translateY(40px)}
+.overlay.show .drawer{transform:none}
+@media(min-width:760px){
+  .overlay.cart-ov{padding:0;justify-content:flex-end;align-items:stretch}
+  .drawer{align-self:stretch;width:480px;height:100%;border-radius:0;transform:translateX(40px)}
+  .overlay.show .drawer{transform:none}
+}
+.dlg-head{flex:none;padding:16px 70px 12px 18px;border-bottom:1px solid var(--line)}
+.dlg-head h2{font-family:var(--f-display);font-weight:400;font-size:28px;margin:0;line-height:1.1}
+.dlg-head h2:focus{outline:none}
+.steps{display:flex;gap:6px;margin:8px 0 0;padding:0;list-style:none;font-size:12px;color:var(--muted)}
+.steps li{display:flex;align-items:center;gap:6px}
+.steps li+li::before{content:"";width:14px;height:1px;background:#bbb}
+.steps li[aria-current="step"]{color:var(--ink);font-weight:700}
+.dlg-body{flex:1;overflow-y:auto;padding:14px 18px;overscroll-behavior:contain}
+.dlg-foot.col{flex-direction:column;align-items:stretch}
+.line{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.line:last-child{border-bottom:0}
+.line-name{font-weight:600;line-height:1.3}
+.line-sub{font-size:12.5px;color:var(--muted)}
+.line-note{font-size:12.5px;color:var(--ink-2);background:#f5f1ed;border-radius:8px;padding:4px 10px;margin-top:6px;display:inline-block}
+.line-sum{font-weight:700;text-align:right;white-space:nowrap}
+.line-ctl{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rm{display:inline-flex;align-items:center;gap:6px;background:none;border:0;color:var(--ink-2);font-size:13px;min-height:44px;padding:0 8px;border-radius:8px}
+.rm:hover{color:var(--red-dark);background:#fbeceb}
+.totals{background:#faf8f6;border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin-top:10px}
+.totals .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.totals .row strong{font-size:22px}
+.warn{font-size:12.5px;color:var(--ink-2);margin:8px 0 0}
+.warn.alert{color:#8a1410;background:#fdeceb;border-radius:8px;padding:8px 10px}
+.empty-cart{text-align:center;padding:36px 8px}
+.empty-cart .icon{width:44px;height:44px;color:#b9b2aa}
+.empty-cart h3{font-family:var(--f-display);font-weight:400;font-size:24px;margin:10px 0 4px}
+.empty-cart p{margin:0 0 16px;color:var(--muted)}
+.radios{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.radios label{border:1.5px solid var(--line);border-radius:12px;padding:12px;display:flex;gap:10px;align-items:center;cursor:pointer;min-height:52px;font-weight:500}
+.radios label.sel{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.radios input{accent-color:var(--red);width:20px;height:20px}
+.two{display:grid;grid-template-columns:1fr 110px;gap:10px}
+.info{font-size:13px;background:#f5f1ed;border-radius:10px;padding:10px 12px;margin:14px 0 0;color:var(--ink-2)}
+.review-block{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.review-block h3{margin:0 0 6px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.review-block p{margin:0 0 4px;white-space:pre-line}
+details.msg{margin-top:6px}
+details.msg summary{cursor:pointer;font-weight:600;font-size:14px;min-height:44px;display:flex;align-items:center}
+details.msg pre{white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#f5f1ed;border-radius:10px;padding:12px;margin:0}
+.after{font-size:13px;color:var(--ink-2);margin:0;text-align:center}
+
+/* Toast */
+.toasts{position:fixed;left:0;right:0;bottom:calc(var(--bar-h) + 16px);z-index:200;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;padding:0 16px}
+.toast{background:#111;color:#fff;border-radius:999px;padding:10px 18px;font-size:14px;box-shadow:0 6px 20px rgba(0,0,0,.3);display:flex;align-items:center;gap:8px;animation:tin .2s ease;max-width:100%}
+.toast .icon{color:#7be08f;width:18px;height:18px}
+@keyframes tin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.7"/><circle cx="16.8" cy="7.2" r=".6"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.2-4.1A8 8 0 1112 20a8 8 0 01-3.9-1L4 20z"/><path d="M9 8.5c0 3 2.5 5.5 5.5 5.5l1-1.3-1.8-.9-.8.6a4 4 0 01-1.9-1.9l.6-.8-.9-1.8L9 8.5z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-cut" viewBox="0 0 24 24"><path d="M4 13c0-4 3-7 8-7 4 0 8 2 8 6s-3 7-8 7c-4 0-8-2-8-6z"/><path d="M9 12c1-1 3-1 5 0"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+</svg>
+
+<a href="#catalogo" class="sr-only">Ir para os produtos</a>
+
+<header class="site-header" id="header">
+  <div class="wrap">
+    <button class="brand" type="button" id="brandBtn" aria-label="MaxBoi Alphaville — voltar ao topo"><img src="assets/logo-maxboi-alphaville.png" alt="MaxBoi Alphaville" width="380" height="103"></button>
+    <nav class="nav" aria-label="Principal">
+      <button type="button" data-goto="churrasco">Churrasco</button>
+      <button type="button" data-goto="diaadia">Dia a dia</button>
+      <button type="button" data-goto="contato">Contato</button>
+    </nav>
+    <div class="hdr-actions">
+      <label class="hdr-search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><span class="sr-only">Buscar produto</span><input type="search" id="qTop" placeholder="Buscar corte ou marca" autocomplete="off"></label>
+      <button type="button" class="icon-btn search-toggle" id="searchToggle" aria-label="Buscar produtos"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></button>
+      <button type="button" class="icon-btn cart-btn" id="cartBtn" aria-label="Abrir meu pedido"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg><span class="cart-total" id="hdrTotal">Meu pedido</span><span class="badge" id="badge" aria-hidden="true">0</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <img class="hero-bg" src="assets/hero.jpg" alt="" fetchpriority="high" decoding="async">
+  <div class="wrap hero-in"><div class="hero-text">
+    <p class="eyebrow">Desde 1989</p>
+    <h1 id="h1">Excelência em cada corte.<br><em>Tradição desde 1989.</em></h1>
+    <p class="sub">Do dia a dia ao churrasco especial, escolha seus cortes e monte seu pedido com a MaxBoi.</p>
+    <div class="hero-cta">
+      <button class="btn btn-red" type="button" id="ctaExplore">Explorar os cortes</button>
+      <button class="btn btn-ghost" type="button" id="ctaBbq">Montar meu churrasco</button>
+    </div>
+  </div></div>
+</section>
+
+<div class="wrap">
+  <div class="entries" role="group" aria-label="Áreas do catálogo">
+    <button type="button" class="entry" data-area="churrasco" aria-pressed="false"><img src="assets/foto-espeto-cortes.jpg" alt="" loading="lazy"><b>Churrasco</b><span>Picanha, costela, ancho e mais</span></button>
+    <button type="button" class="entry" data-area="diaadia" aria-pressed="false"><img src="assets/foto-bife-tabua.jpg" alt="" loading="lazy" style="object-position:50% 55%"><b>Dia a dia</b><span>Aves, suínos, moídos, peixes</span></button>
+  </div>
+
+  <div class="catalog-head" id="catalogo">
+    <h2>Escolha seus cortes</h2>
+    <p class="price-note">Preços de referência do catálogo de 17/10/2026. Sujeitos a alteração e disponibilidade. Confirme os valores com a loja.</p>
+  </div>
+  <div class="tools">
+    <div class="search" id="searchBox"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg><label class="sr-only" for="q">Buscar por corte, produto ou marca</label><input id="q" type="search" placeholder="Buscar por corte, produto ou marca" autocomplete="off" enterkeyhint="search"><button type="button" class="clear-q" id="clearQ" aria-label="Limpar busca"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+    <div class="filters">
+      <div class="seg" role="group" aria-label="Área"><button type="button" data-areaf="" aria-pressed="true">Tudo</button><button type="button" data-areaf="churrasco" aria-pressed="false">Churrasco</button><button type="button" data-areaf="diaadia" aria-pressed="false">Dia a dia</button></div>
+      <label class="sr-only" for="brandSel">Filtrar por marca</label>
+      <select class="select" id="brandSel"><option value="">Todas as marcas</option></select>
+      <button type="button" class="link-btn" id="clearFilters" hidden>Limpar filtros</button>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+  </div>
+</div>
+<div class="chipbar" id="chipbar"><div class="wrap"><div class="chips" id="chips" role="group" aria-label="Categorias"></div></div></div>
+<div class="wrap" id="results"></div>
+</main>
+
+<footer class="site-footer" id="contato">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><img class="flogo" src="assets/logo-maxboi-alphaville.png" alt="MaxBoi Alphaville" width="380" height="103"><p class="tagline">Cortes selecionados, preço justo e qualidade de verdade, desde 1989.</p></div>
+      <div><h4>Endereço</h4><div class="foot-line"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><p id="fAddr"></p></div></div>
+      <div><h4>Horários</h4><div class="foot-line"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><div id="fHours"></div></div></div>
+      <div><h4>Fale com a gente</h4>
+        <p><a class="btn btn-red btn-sm" id="fWa" href="#" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp <span id="fPhone"></span></a></p>
+        <p><a id="fIg" href="#" target="_blank" rel="noopener" class="foot-line" style="margin-top:10px"><svg class="icon" aria-hidden="true" style="margin-top:0"><use href="#i-insta"/></svg><span id="fIgT"></span></a></p></div>
+    </div>
+    <p class="legal">Preços de referência do catálogo de 17/10/2026. Sujeitos a alteração e disponibilidade. Confirme os valores com a loja. Produtos vendidos por peso têm valor estimado; o total é confirmado após a pesagem. As fotos são ilustrativas.</p>
+  </div>
+</footer>
+
+<div class="cart-bar" id="cartBar" hidden><button type="button" id="cartBarBtn"></button></div>
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<!-- Produto -->
+<div class="overlay" id="ovProduct"><div class="dialog sheet" role="dialog" aria-modal="true" aria-labelledby="pmTitle" id="dlgProduct">
+  <button type="button" class="x-btn" data-close aria-label="Fechar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  <div class="pm-media" id="pmMedia"></div>
+  <div class="pm-main">
+    <div class="pm-scroll" id="pmScroll"></div>
+    <div class="dlg-foot"><div class="est"><span id="pmEstLbl">Estimado</span><strong id="pmEst">R$ 0,00</strong></div><button type="button" class="btn btn-red" id="pmAdd">Adicionar ao pedido</button></div>
+  </div>
+</div></div>
+
+<!-- Carrinho -->
+<div class="overlay cart-ov" id="ovCart"><div class="dialog drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" id="dlgCart">
+  <button type="button" class="x-btn" data-close aria-label="Fechar"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+  <div class="dlg-head"><h2 id="cartTitle" tabindex="-1">Meu pedido</h2>
+    <ol class="steps" id="steps"><li aria-current="step">1 Itens</li><li>2 Dados</li><li>3 Revisão</li></ol></div>
+  <div class="dlg-body" id="cartBody"></div>
+  <div class="dlg-foot col" id="cartFoot"></div>
+</div></div>
+<script>
+/* ============================================================
+   CONFIGURAÇÕES DA LOJA — edite aqui
+   ============================================================ */
+const STORE = {
+  nome: "MaxBoi Alphaville",
+  frase: "Cortes selecionados, preço justo e qualidade de verdade, desde 1989",
+  telefoneExibicao: "(11) 91471-8398",
+  whatsapp: "5511914718398",
+  endereco: "Av. Vênus, 280 — Alphaville, Santana de Parnaíba",
+  horarios: ["Segunda a sábado: 8h às 20h", "Domingo: 8h às 14h"],
+  instagram: "maxboialphaville",
+  catalogoData: "17/10/2026"
+};
+
+/* ============================================================
+   CATÁLOGO — fonte: PDF de 17/10/2026
+   Cada linha = uma opção vendável. Campos:
+     area      "churrasco" | "diaadia"
+     categoria agrupa a barra de categorias
+     corte     nome do corte (agrupa as marcas no mesmo card)
+     marca     marca/linha exatamente como no catálogo (ou "")
+     preco     em reais (0 ou null = "Preço sob consulta")
+     unidade   "kg" | "un" | "pct"
+     emb       peso/descrição da embalagem (informativo, não é a unidade de cobrança)
+     cong      true quando o catálogo indica "congelado"
+     img       arquivo em assets/ (opcional; sem foto = placeholder)
+   O id é gerado automaticamente.
+   ============================================================ */
+const IMG = {
+  picanha: "foto-espeto-cortes.jpg",
+  moida: "foto-moida.jpg",
+  cubos: "foto-cubos.jpg",
+  bife: "foto-bife-madeira.jpg",
+  bifeTabua: "foto-bife-tabua.jpg"
+};
+const RAW = [];
+function add(area, categoria, corte, marca, preco, unidade, extra) {
+  RAW.push(Object.assign({ area, categoria, corte, marca: marca || "", preco, unidade: unidade || "kg", emb: "", cong: false, img: "" }, extra || {}));
+}
+/* ---------- CHURRASCO ---------- */
+(function () {
+  const C = "churrasco";
+  let k = "Picanha", cat = "Picanha", im = { img: IMG.picanha };
+  add(C, cat, k, "Cara Preta Congelada", 209.98, "kg", { cong: true, ...im });
+  add(C, cat, k, "Seleção MaxBoi", 124.98, "kg", im);
+  add(C, cat, k, "FSW", 219.98, "kg", im);
+  add(C, cat, k, "Gran Campeon Patagônia", 198.98, "kg", im);
+  add(C, cat, k, "Black Angus", 199.98, "kg", im);
+  add(C, cat, k, "Montana", 96.98, "kg", im);
+  add(C, cat, k, "Cabana Juramento", 219.98, "kg", im);
+  add(C, cat, k, "Wagyu Congelada", 649.98, "kg", { cong: true, ...im });
+  add(C, cat, k, "Wagyu Congelada Steak", 350.09, "kg", { cong: true, ...im });
+  add(C, cat, k, "Cortes Nobres", 129.98, "kg", im);
+
+  k = cat = "Fraldinha";
+  [["Cortes Nobres",84.98],["Montana",59.98],["Seleção MaxBoi",85.98],["Red Gran Campeon",184.98],["Bassi",89.99],["Black Angus",129.98],["Seleção 700",94.98]].forEach(x => add(C, cat, k, x[0], x[1]));
+
+  cat = "Espetos temperados";
+  [["Coração",58.98],["Frango",41.98],["Medalhão de Frango com Bacon",69.98],["Tulipa",42.98],["Medalhão de Filé Mignon Suíno",59.98],["Carne",49.98],["Picanha Bovina",99.98],["Alcatra",74.98],["Linguiça",49.98],["Kafta",41.98],["Carne com Bacon",59.98]].forEach(x => add(C, cat, "Espeto de " + x[0], "", x[1]));
+  RAW.slice(-11).forEach(r => { r.corte = r.corte.replace("Espeto de ", ""); r.corte = r.corte; });
+
+  cat = k = "Denver";
+  [["Cara Preta",277.99],["Black Angus",109.98],["Steak da Casa",89.98],["Premier",229.98],["481",269.98]].forEach(x => add(C, cat, k, x[0], x[1]));
+
+  cat = k = "T-Bone";
+  add(C, cat, k, "Gran Campeon Congelada", 144.98, "kg", { cong: true });
+  add(C, cat, k, "Cara Preta Congelada", 189.98, "kg", { cong: true });
+  add(C, cat, k, "Black Angus", 114.98);
+
+  cat = k = "Costela";
+  add(C, cat, k, "Gran Campeon Congelada", 119.98, "kg", { cong: true });
+  add(C, cat, k, "Black Angus Congelada", 129.98, "kg", { cong: true });
+
+  cat = k = "Bananinha";
+  [["Black Angus",89.98],["Gran Campeon",94.98],["Premier",109.98]].forEach(x => add(C, cat, k, x[0], x[1]));
+
+  add(C, "Tomahawk", "Tomahawk", "Black Angus", 189.98);
+  cat = k = "Ribeye Center";
+  add(C, cat, k, "481", 269.98); add(C, cat, k, "Black Angus", 94.98);
+  add(C, "Prime Rib", "Prime Rib", "Black Angus", 119.98);
+  cat = k = "Short Rib";
+  add(C, cat, k, "Cara Preta Congelada", 134.98, "kg", { cong: true });
+  add(C, cat, k, "Gran Campeon", 119.98); add(C, cat, k, "Black Angus", 109.98);
+  add(C, "Flat Steak", "Flat Steak", "Wagyu Irmãos São Vicente", 124.98);
+  add(C, "Peixinho Red", "Peixinho Red", "Premier", 62.98);
+  cat = k = "Chorizo";
+  [["Black Angus",109.98],["Bassi",89.98],["Gran Campeon",129.98],["Seleção 700",99.98],["Angus",114.98]].forEach(x => add(C, cat, k, x[0], x[1]));
+  add(C, cat, k, "Wagyu Congelada", 329.89, "kg", { cong: true });
+  cat = k = "Ancho";
+  [["Black Angus",104.98],["Bassi",84.98],["Da Casa",89.98],["Seleção 700",109.98]].forEach(x => add(C, cat, k, x[0], x[1], "kg", { img: IMG.bifeTabua }));
+  cat = k = "Maminha";
+  [["Steakhouse",79.98],["Seleção 700",74.98],["Da Casa",62.98]].forEach(x => add(C, cat, k, x[0], x[1]));
+
+  cat = k = "Pão de alho";
+  [["Santa Massa Tradicional Bolinha 300g",18.99,"300 g"],["Santa Massa Picante 400g",18.99,"400 g"],["Santa Massa Doce de Leite Bolinha 300g",14.99,"300 g"],["Santa Massa Tradicional Baguete 400g",18.99,"400 g"],["Premium Tradicional 380g",18.99,"380 g"],["Premium Alho-Poró 380g",15.98,"380 g"],["Premium com Quejo 380g".replace("Quejo","Queijo"),14.99,"380 g"]].forEach(x => add(C, cat, k, x[0], x[1], "un", { emb: x[2] }));
+  cat = k = "Queijo coalho";
+  [["Quatá Tradicional 300g",29.99,"300 g"],["Quatá Orégano 300g",29.99,"300 g"],["Tirolez Tradicional 280g",28.98,"280 g"]].forEach(x => add(C, cat, k, x[0], x[1], "un", { emb: x[2] }));
+  cat = "Acendedores e fósforos"; k = "Acendedores e fósforos";
+  [["Fiat Luz 90g",12.99,"90 g"],["Zulu Gel 420g",16.98,"420 g"],["Fósforo Paraná 10 unidades",13.99,"10 unidades"],["Rápido 4 unidades",10.98,"4 unidades"]].forEach(x => add(C, cat, k, x[0], x[1], "un", { emb: x[2] }));
+})();
+/* ---------- DIA A DIA ---------- */
+(function () {
+  const D = "diaadia";
+  function list(cat, rows, extra) { rows.forEach(r => add(D, cat, r[0], "", r[1], "kg", Object.assign({}, extra || {}, r[2] || {}))); }
+  list("Carnes vermelhas", [
+    ["Patinho Moído",64.98,{img:IMG.moida}],["Patinho Bife",64.98,{img:IMG.bife}],["Acém Moído",39.98,{img:IMG.moida}],["Miolo do Acém em Cubos",48.98,{img:IMG.cubos}],["Paleta",49.98],
+    ["Contra - Filé",69.98],["Baby Beef",78.98],["Bombom Baby Beef",79.98],["Coxão Mole Bife",67.98,{img:IMG.bife}],["Coxão Mole em Tiras",67.98],
+    ["Coxão Mole em Cubos (strogonoff)",67.98,{img:IMG.cubos}],["Coxão Duro",51.98],["Coxão Duro Red Bife",64.98,{img:IMG.bife}],["Coxão Duro Stretto",64.98],
+    ["Filé Mignon Peça kg",104.98],["Filé Mignon Kg",144.98],["Filé Mignon Bife",144.98,{img:IMG.bife}],["Filé Mignon em Cubos (strogonoff)",144.98,{img:IMG.cubos}],
+    ["Filé Mignon Medalhão",144.98],["Lagarto",51.98],["Assado Brasileiro",64.98],["Costela de Peito Bovina",36.98],["Costela Janela",47.98]
+  ]);
+  list("Aves", [
+    ["Peito Inteiro",18.98],["Peito Inteiro com Osso e sem Pele",19.98],["Peito sem Osso e sem Pele",24.98],["Peito sem Osso (xadrez)",29.98],["Filé de Peito",29.98],
+    ["Frango em Cubos (strogonoff)",29.98],["Coxa Solteira",17.98],["Coxa e Sobrecoxa",14.98],["Coxinha da Asa",16.98],
+    ["Sobrecoxa com Pele",18.98],["Sobrecoxa sem Pele",19.98],["Filé de Sobrecoxa sem Pele",21.98],["Filé de Sobrecoxa com Pele",18.98],["Fígado de Frango",9.98],
+    ["Frango Moído",29.98],["Meio da asa frango",36.98],["Frango à Milanesa",59.98],["Moela",22.98],["Pé",12.98]
+  ]);
+  list("Suínos", [
+    ["Bisteca Lombo",22.98],["Bisteca Copa Lombo",24.98],["Costelinha Fresca",39.98],["Filé Mignon",42.98],["Lombo",35.98],["Pernil com Osso",10.98],
+    ["Picado",12.98],["Panceta / Barriga",29.98],["Carne Moída Congelada",29.99,{cong:true,img:IMG.moida}],["Filé de Pernil sem Osso",24.98],["Toucinho",15.98]
+  ]);
+  list("Miúdos congelados", [
+    ["Bucho",22.99],["Moela",17.98],["Pé de Frango",9.98],["Coração de Frango",45.98],["Língua",24.99],["Rabo bovino",44.98],["Fígado Bovino",19.98],["Mocotó",17.98],["Ossobuco",48.98]
+  ], { cong: true });
+  ["Tilápia Aurora 800g|56.98|800 g","Linguado Oceani 500g|89.99|500 g"].forEach(s => { const p = s.split("|"); add(D, "Peixes", p[0].replace(/ \d+g$/, ""), "", +p[1], "pct", { emb: p[2] }); });
+  RAW[RAW.length - 2].marca = "Aurora"; RAW[RAW.length - 1].marca = "Oceani";
+  RAW[RAW.length - 2].corte = "Tilápia"; RAW[RAW.length - 1].corte = "Linguado";
+  list("Temperados", [
+    ["Rocambole de Frango",49.98],["Rocambole Bovino",49.98],["Almôndega Vulcão",52.90],["Almôndega",39.98],["Mini Kafta",39.98],["Medalhão de Bacon e Queijo",52.90],
+    ["Margarida (Coxa e Sobrecoxa Recheada)",52.90],["Filé de Coxa e Sobrecoxa",25.98],["Sobrecoxa",24.98],["Filé de Sobrecoxa",25.98],["Filé de Frango",34.98],["Coxinha da Asa",24.98],["Tulipa",39.98],
+    ["Sobrecoxa sem Pele",25.98],["Frango Inteiro",29.98],["Galeto",39.98],["Filé Mignon Suíno",46.98],["Barriga Suína",31.98],["Picanha Suína",44.98],["Costela Suína",35.98],["Lombo",32.98],
+    ["Cupim Bovino",59.99],["Pernil de Cordeiro",109.98],["Paleta de Cordeiro",109.98],["French Rack",249.98]
+  ]);
+  list("Hambúrgueres", [
+    ["Hambúrguer de Fraldinha (sem tempero)",69.98],["Mini Hambúrguer de Fraldinha (sem tempero)",69.98],["Hambúrguer da Casa",39.98],["Mini Hambúrguer da Casa",39.98],
+    ["Hambúrguer de Costela",49.98],["Hambúrguer Black Angus (sem tempero)",129.98],["Hambúrguer de Picanha",119.98]
+  ]);
+})();
+const ORDEM_CATS = {
+  churrasco: ["Picanha","Fraldinha","Espetos temperados","Denver","T-Bone","Costela","Bananinha","Tomahawk","Ribeye Center","Prime Rib","Short Rib","Flat Steak","Peixinho Red","Chorizo","Ancho","Maminha","Pão de alho","Queijo coalho","Acendedores e fósforos"],
+  diaadia: ["Carnes vermelhas","Aves","Suínos","Miúdos congelados","Peixes","Temperados","Hambúrgueres"]
+};
+const UNIDADE_PRECO_TXT = { kg: "/kg", un: "/unidade", pct: "/pacote" };
+</script>
+<script>
+(function () {
+"use strict";
+/* ---------- utilidades ---------- */
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const norm = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+const slug = s => norm(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const brl = c => (c / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+const esc = s => String(s).replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
+const ico = (n, cls) => '<svg class="icon ' + (cls || "") + '" aria-hidden="true"><use href="#i-' + n + '"/></svg>';
+const kgTxt = g => (g / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 3 }) + " kg";
+const AREA_NOME = { churrasco: "Churrasco", diaadia: "Dia a dia" };
+
+/* ---------- dados normalizados ---------- */
+const OPTS = {};      // id -> opção
+const PRODUCTS = [];  // grupos (cards)
+(function build() {
+  const map = {};
+  RAW.forEach(r => {
+    const preco = r.preco ? Math.round(r.preco * 100) : 0;
+    let id = slug(r.categoria + "-" + r.corte + "-" + r.marca), n = 2;
+    while (OPTS[id]) id = slug(r.categoria + "-" + r.corte + "-" + r.marca) + "-" + (n++);
+    const o = { id, area: r.area, categoria: r.categoria, corte: r.corte, marca: r.marca, preco, unidade: r.unidade, emb: r.emb, cong: !!r.cong, img: r.img };
+    o.label = r.marca || r.corte;
+    OPTS[id] = o;
+    const gk = r.area + "|" + r.categoria + "|" + r.corte;
+    if (!map[gk]) { map[gk] = { gid: slug(gk), area: r.area, categoria: r.categoria, corte: r.corte, opts: [] }; PRODUCTS.push(map[gk]); }
+    map[gk].opts.push(o);
+  });
+  PRODUCTS.forEach(p => {
+    p.img = (p.opts.find(o => o.img) || {}).img || "";
+    p.unidade = p.opts[0].unidade;
+    p.cong = p.opts.every(o => o.cong);
+    p.search = norm([p.corte, p.categoria, AREA_NOME[p.area]].concat(p.opts.map(o => o.marca + " " + o.emb)).join(" "));
+  });
+})();
+
+/* ---------- estado ---------- */
+const state = { q: "", area: "", cat: "", brand: "" };
+let cart = [];
+const LS = "maxboi-cart-v1";
+function loadCart() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(LS) || "[]");
+    if (!Array.isArray(raw)) return [];
+    return raw.filter(i => i && OPTS[i.optId] && Number.isFinite(i.qty) && i.qty > 0)
+      .map(i => ({ optId: i.optId, qty: Math.round(i.qty), note: String(i.note || "").slice(0, 200) }));
+  } catch (e) { return []; }
+}
+function saveCart() { try { localStorage.setItem(LS, JSON.stringify(cart)); } catch (e) { /* sem storage */ } }
+const lineKey = i => i.optId + "||" + norm(i.note);
+const subtotal = i => { const o = OPTS[i.optId]; return o.unidade === "kg" ? Math.round(o.preco * i.qty / 1000) : o.preco * i.qty; };
+const qtyTxt = i => { const u = OPTS[i.optId].unidade; return u === "kg" ? kgTxt(i.qty) : u === "un" ? i.qty + (i.qty === 1 ? " unidade" : " unidades") : i.qty + (i.qty === 1 ? " pacote" : " pacotes"); };
+const unitTxt = o => o.preco ? brl(o.preco) + UNIDADE_PRECO_TXT[o.unidade] : "Preço sob consulta";
+function totals() {
+  let sum = 0, consult = 0, n = 0;
+  cart.forEach(i => { n++; if (OPTS[i.optId].preco) sum += subtotal(i); else consult++; });
+  return { sum, consult, n };
+}
+
+/* ---------- toasts ---------- */
+function toast(msg) {
+  const t = document.createElement("div"); t.className = "toast"; t.innerHTML = ico("check") + "<span>" + esc(msg) + "</span>";
+  $("#toasts").appendChild(t); setTimeout(() => t.remove(), 2400);
+}
+
+/* ---------- catálogo ---------- */
+function brandsList() {
+  const s = new Set(); RAW.forEach(r => { if (r.marca && r.area && !/\d+\s?(g|unidades)\b/i.test(r.marca) && r.unidade === "kg") s.add(r.marca.replace(/ Congelada?$/i, "")); });
+  return Array.from(s).sort((a, b) => a.localeCompare(b, "pt-BR"));
+}
+const optBrand = o => o.marca.replace(/ Congelada?$/i, "");
+function filtered() {
+  const q = norm(state.q);
+  return PRODUCTS.map(p => {
+    if (state.area && p.area !== state.area) return null;
+    if (state.cat && p.categoria !== state.cat) return null;
+    if (q && !q.split(/\s+/).every(w => p.search.indexOf(w) > -1)) return null;
+    let opts = p.opts;
+    if (state.brand) { opts = p.opts.filter(o => optBrand(o) === state.brand); if (!opts.length) return null; }
+    return { p, opts };
+  }).filter(Boolean);
+}
+function cardHTML(p, opts) {
+  const multi = p.opts.length > 1;
+  const prices = opts.map(o => o.preco).filter(Boolean);
+  const o0 = opts[0];
+  let priceHTML;
+  if (!prices.length) priceHTML = '<div class="price consult"><strong>Preço sob consulta</strong></div>';
+  else if (multi && opts.length > 1 && Math.min.apply(null, prices) !== Math.max.apply(null, prices))
+    priceHTML = '<div class="price"><small>A partir de</small><strong>' + brl(Math.min.apply(null, prices)) + "</strong><em>" + UNIDADE_PRECO_TXT[p.unidade] + "</em></div>";
+  else priceHTML = '<div class="price"><strong>' + brl(prices[0]) + "</strong><em>" + UNIDADE_PRECO_TXT[p.unidade] + "</em></div>";
+  const sub = multi ? p.opts.length + " opções de marca/linha" : (o0.marca && o0.marca !== p.corte ? o0.marca : "") + (o0.emb && !/\d/.test(o0.marca) ? " · " + o0.emb : "");
+  const media = p.img
+    ? '<img src="assets/' + p.img + '" alt="Foto ilustrativa: ' + esc(p.corte) + '" loading="lazy" decoding="async">'
+    : '<span class="ph"><img src="assets/mascote.png" alt="">' + ico("cut") + "<small>Sem foto</small></span>";
+  const tag = p.cong ? '<span class="tag">Congelado</span>' : "";
+  const kick = p.categoria !== p.corte ? '<span class="kicker">' + esc(p.categoria) + "</span>" : '<span class="kicker">' + esc(AREA_NOME[p.area]) + "</span>";
+  return '<article class="card"><button type="button" class="card-main" data-open="' + p.gid + '" aria-label="' + esc(p.corte + (multi ? ", escolher opção" : "") + ", " + (prices.length ? (multi ? "a partir de " : "") + brl(Math.min.apply(null, prices)) + UNIDADE_PRECO_TXT[p.unidade] : "preço sob consulta")) + '">' +
+    '<span class="card-media">' + media + tag + "</span>" +
+    '<span class="card-body">' + kick + '<span class="card-title">' + esc(p.corte) + '</span><span class="card-sub">' + esc(sub) + "</span>" + priceHTML + "</span></button>" +
+    '<button type="button" class="btn btn-red btn-add" data-open="' + p.gid + '">' + (multi ? "Escolher opção" : "Adicionar") + "</button></article>";
+}
+function renderCatalog() {
+  const list = filtered();
+  const res = $("#results");
+  const active = !!(state.q || state.area || state.cat || state.brand);
+  $("#clearFilters").hidden = !active;
+  $("#count").textContent = list.length + (list.length === 1 ? " produto" : " produtos");
+  $("#searchBox").classList.toggle("has-q", !!state.q);
+  if (!list.length) {
+    res.innerHTML = '<div class="empty"><h3>Nenhum corte encontrado</h3><p>Não encontramos resultados para a sua busca com os filtros atuais. Tente outro nome, retire a marca escolhida ou veja o catálogo completo.</p><div class="row"><button type="button" class="btn btn-red" data-clear>Limpar filtros</button><a class="btn btn-line" target="_blank" rel="noopener" href="' + waLink("Olá, MaxBoi! Procuro um corte que não encontrei no site" + (state.q ? ': "' + state.q + '"' : "") + ".") + '">Perguntar pelo WhatsApp</a></div></div>';
+  } else {
+    const by = {};
+    list.forEach(x => { const k = x.p.area + "|" + x.p.categoria; (by[k] = by[k] || []).push(x); });
+    let html = "";
+    ["churrasco", "diaadia"].forEach(a => ORDEM_CATS[a].forEach(c => {
+      const g = by[a + "|" + c]; if (!g) return;
+      const unit = g[0].p.unidade;
+      const note = unit === "kg" ? "Preços por kg" : unit === "un" ? "Preços por unidade" : "Preços por pacote";
+      html += '<section class="section" id="sec-' + slug(a + c) + '" aria-labelledby="h-' + slug(a + c) + '"><h3 id="h-' + slug(a + c) + '">' + esc(c) + " <small>" + esc(AREA_NOME[a]) + " · " + note + '</small></h3><div class="grid">' + g.map(x => cardHTML(x.p, x.opts)).join("") + "</div></section>";
+    }));
+    res.innerHTML = html;
+  }
+  renderChips();
+}
+function renderChips() {
+  const areas = state.area ? [state.area] : ["churrasco", "diaadia"];
+  let html = '<button type="button" class="cat-chip" data-cat="" aria-pressed="' + (!state.cat) + '">Todas</button>';
+  areas.forEach(a => ORDEM_CATS[a].forEach(c => { html += '<button type="button" class="cat-chip" data-cat="' + esc(c) + '" data-area="' + a + '" aria-pressed="' + (state.cat === c) + '">' + esc(c) + "</button>"; }));
+  const box = $("#chips"); const sl = box.scrollLeft; box.innerHTML = html; box.scrollLeft = sl;
+  const on = $(".cat-chip[aria-pressed='true']", box); if (on && state.cat) on.scrollIntoView({ block: "nearest", inline: "center" });
+  $$(".seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.areaf === state.area)));
+  $$(".entry").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.area === state.area)));
+}
+function waLink(text) { return "https://wa.me/" + STORE.whatsapp + "?text=" + encodeURIComponent(text); }
+function clearFilters() { state.q = state.area = state.cat = state.brand = ""; $("#q").value = ""; $("#qTop").value = ""; $("#brandSel").value = ""; renderCatalog(); }
+function setQuery(v, from) {
+  state.q = v; if (from !== "q") $("#q").value = v; if (from !== "qTop") $("#qTop").value = v; renderCatalog();
+}
+function scrollToCatalog() { const el = $("#catalogo"); const y = el.getBoundingClientRect().top + window.scrollY - (parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) || 60) - 8; window.scrollTo({ top: y, behavior: "smooth" }); }
+
+/* ---------- janelas (foco, ESC, retorno) ---------- */
+let openOv = null, lastFocus = null;
+const FOCUSABLE = 'a[href],button:not([disabled]),input:not([disabled]),select,textarea,summary,[tabindex]:not([tabindex="-1"])';
+function openDialog(ov, focusEl) {
+  lastFocus = document.activeElement; openOv = ov;
+  ov.classList.add("open"); document.documentElement.classList.add("lock");
+  requestAnimationFrame(() => ov.classList.add("show"));
+  setTimeout(() => (focusEl || $("[data-close]", ov)).focus({ preventScroll: true }), 30);
+}
+function closeDialog() {
+  if (!openOv) return; const ov = openOv; openOv = null;
+  ov.classList.remove("show");
+  setTimeout(() => { ov.classList.remove("open"); }, 200);
+  document.documentElement.classList.remove("lock");
+  if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
+}
+document.addEventListener("keydown", e => {
+  if (!openOv) return;
+  if (e.key === "Escape") { e.preventDefault(); closeDialog(); return; }
+  if (e.key === "Tab") {
+    const f = $$(FOCUSABLE, openOv).filter(el => el.offsetParent !== null);
+    if (!f.length) return;
+    const a = f[0], z = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+    else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+  }
+});
+$$(".overlay").forEach(ov => {
+  ov.addEventListener("mousedown", e => { if (e.target === ov) closeDialog(); });
+  $$("[data-close]", ov).forEach(b => b.addEventListener("click", closeDialog));
+});
+
+/* ---------- painel do produto ---------- */
+const pm = { p: null, optId: null, grams: 1000, units: 1, note: "", editIdx: -1 };
+const SUGS = ["Bifes finos", "Bifes grossos", "Separar em duas embalagens", "Peça inteira", "Moer na hora", "Cortar em cubos"];
+function parseKg(s) {
+  const t = String(s).trim().replace(",", "."); if (!/^\d+(\.\d+)?$/.test(t)) return NaN;
+  return Math.round(parseFloat(t) * 100) * 10;
+}
+function openProduct(gid, preset) {
+  const p = PRODUCTS.find(x => x.gid === gid); if (!p) return;
+  pm.p = p; pm.grams = 1000; pm.units = 1; pm.note = ""; pm.editIdx = -1;
+  let first = p.opts[0];
+  if (state.brand) { const m = p.opts.find(o => optBrand(o) === state.brand); if (m) first = m; }
+  pm.optId = p.opts.length > 1 ? "" : first.id;
+  if (p.opts.length > 1 && state.brand) pm.optId = first.id;
+  if (preset) Object.assign(pm, preset);
+  renderProduct();
+  openDialog($("#ovProduct"), $("#pmTitle"));
+}
+function renderProduct() {
+  const p = pm.p, o = OPTS[pm.optId], multi = p.opts.length > 1;
+  const media = p.img ? '<img class="photo" src="assets/' + p.img + '" alt="">' + '<span class="ilus">Foto ilustrativa</span>'
+    : '<span class="ph"><img src="assets/mascote.png" alt="">' + ico("cut") + "<small>Sem foto</small></span>";
+  $("#pmMedia").innerHTML = media;
+  const unit = p.unidade;
+  let h = '<span class="kicker">' + esc(p.categoria) + "</span><h2 id=\"pmTitle\" tabindex=\"-1\">" + esc(p.corte) + "</h2>";
+  h += '<p class="pm-brandline">' + (o ? esc(o.marca && o.marca !== p.corte ? o.marca : "") + (o.cong ? " · Congelado" : "") : "Escolha a marca ou linha") + "</p>";
+  if (multi) {
+    h += '<fieldset><legend>Marca ou linha</legend><div class="opts" role="radiogroup">';
+    p.opts.forEach(x => {
+      h += '<label class="opt' + (x.id === pm.optId ? " sel" : "") + '"><input type="radio" name="opt" value="' + x.id + '"' + (x.id === pm.optId ? " checked" : "") + '><span class="opt-body"><span>' + esc(x.label) + "</span>" + (x.emb ? '<small style="color:var(--muted)">Embalagem: ' + esc(x.emb) + "</small>" : "") + '</span><span class="opt-price">' + (x.preco ? brl(x.preco) + "<small>" + UNIDADE_PRECO_TXT[unit] + "</small>" : "<small>Sob consulta</small>") + "</span></label>";
+    });
+    h += "</div></fieldset>";
+  } else if (o && o.emb) h += '<p class="pm-brandline" style="margin-top:-6px">Embalagem: ' + esc(o.emb) + "</p>";
+  if (o && !o.preco) h += '<p class="warn alert">Preço sob consulta: este item não entra no subtotal. A loja informará o valor.</p>';
+  if (unit === "kg") {
+    const presets = [500, 1000, 1500, 2000];
+    h += '<fieldset><legend>Peso solicitado</legend><div class="chips2">' + presets.map(g => '<button type="button" class="chip" data-g="' + g + '" aria-pressed="' + (pm.grams === g) + '">' + kgTxt(g) + "</button>").join("") + "</div>";
+    h += '<label class="lbl" for="pmCustom">Outro peso</label><div class="field" id="pmField"><input id="pmCustom" inputmode="decimal" placeholder="Ex.: 2,5" autocomplete="off" value="' + (presets.indexOf(pm.grams) < 0 ? String(pm.grams / 1000).replace(".", ",") : "") + '" aria-describedby="pmErr"><span>kg</span></div><p class="err" id="pmErr" role="alert"></p></fieldset>';
+  } else {
+    h += '<fieldset><legend>' + (unit === "pct" ? "Pacotes" : "Quantidade") + '</legend><div class="stepper"><button type="button" id="uMinus" aria-label="Diminuir quantidade">' + ico("minus") + '</button><input id="uQty" inputmode="numeric" aria-label="Quantidade" value="' + pm.units + '"><button type="button" id="uPlus" aria-label="Aumentar quantidade">' + ico("plus") + '</button></div><p class="err" id="pmErr" role="alert"></p></fieldset>';
+  }
+  h += '<label class="lbl" for="pmNote">Observações do item <span style="font-weight:400;color:var(--muted)">(opcional)</span></label><textarea class="txt" id="pmNote" rows="2" maxlength="200" placeholder="Ex.: bifes finos">' + esc(pm.note) + "</textarea>";
+  if (unit === "kg") h += '<div class="sugs">' + SUGS.map(s => '<button type="button" class="sug" data-sug="' + esc(s) + '">' + esc(s) + "</button>").join("") + "</div>";
+  h += '<p class="legal-note">' + (unit === "kg" ? "Peso e preparo sujeitos à confirmação da loja. O valor é estimado e será confirmado após a pesagem." : "Disponibilidade sujeita à confirmação da loja.") + "</p>";
+  $("#pmScroll").innerHTML = h;
+  $("#pmAdd").textContent = pm.editIdx > -1 ? "Salvar alterações" : "Adicionar ao pedido";
+  updatePmFoot();
+}
+function pmValid() {
+  const o = OPTS[pm.optId]; if (!o) return { ok: false, msg: "Escolha a marca ou linha." };
+  if (pm.p.unidade === "kg") {
+    if (!(pm.grams >= 100)) return { ok: false, msg: "Informe um peso de pelo menos 0,1 kg." };
+    if (pm.grams > 50000) return { ok: false, msg: "Para mais de 50 kg, fale com a loja pelo WhatsApp." };
+  } else if (!(pm.units >= 1 && pm.units <= 99)) return { ok: false, msg: "Informe uma quantidade entre 1 e 99." };
+  return { ok: true };
+}
+function updatePmFoot() {
+  const o = OPTS[pm.optId], v = pmValid();
+  const qty = pm.p.unidade === "kg" ? pm.grams : pm.units;
+  $("#pmEstLbl").textContent = pm.p.unidade === "kg" ? "Valor estimado" : "Subtotal";
+  $("#pmEst").textContent = !o ? "—" : !o.preco ? "Sob consulta" : v.ok ? brl(subtotal({ optId: o.id, qty })) : "—";
+  $("#pmAdd").disabled = !v.ok;
+}
+const pmScroll = $("#pmScroll");
+pmScroll.addEventListener("change", e => {
+  if (e.target.name === "opt") { pm.optId = e.target.value; keepScroll(renderProduct); $("input[name=opt]:checked", pmScroll).focus(); }
+});
+function keepScroll(fn) { const t = pmScroll.scrollTop; fn(); pmScroll.scrollTop = t; }
+pmScroll.addEventListener("click", e => {
+  const c = e.target.closest("[data-g]"), s = e.target.closest("[data-sug]");
+  if (c) { pm.grams = +c.dataset.g; $("#pmCustom").value = ""; $("#pmErr").textContent = ""; $$("[data-g]", pmScroll).forEach(b => b.setAttribute("aria-pressed", String(b === c))); updatePmFoot(); }
+  if (s) { const n = $("#pmNote"); const t = s.dataset.sug; if (norm(n.value).indexOf(norm(t)) < 0) n.value = (n.value.trim() ? n.value.trim().replace(/[.;]$/, "") + "; " : "") + t; pm.note = n.value.slice(0, 200); n.value = pm.note; }
+  if (e.target.closest("#uMinus")) setUnits(pm.units - 1);
+  if (e.target.closest("#uPlus")) setUnits(pm.units + 1);
+});
+function setUnits(n) { pm.units = Math.max(1, Math.min(99, n || 1)); $("#uQty").value = pm.units; updatePmFoot(); }
+pmScroll.addEventListener("input", e => {
+  if (e.target.id === "pmNote") pm.note = e.target.value;
+  if (e.target.id === "pmCustom") {
+    const v = e.target.value.trim(), err = $("#pmErr");
+    $$("[data-g]", pmScroll).forEach(b => b.setAttribute("aria-pressed", "false"));
+    if (!v) { pm.grams = 0; err.textContent = ""; }
+    else { const g = parseKg(v); if (isNaN(g)) { pm.grams = 0; err.textContent = "Use apenas números, por exemplo 1,5."; } else { pm.grams = g; err.textContent = g < 100 ? "Peso mínimo: 0,1 kg." : g > 50000 ? "Máximo de 50 kg por item." : ""; } }
+    $("#pmField").classList.toggle("bad", !!err.textContent); updatePmFoot();
+  }
+  if (e.target.id === "uQty") { const n = parseInt(e.target.value.replace(/\D/g, ""), 10); pm.units = isNaN(n) ? 0 : n; $("#pmErr").textContent = pm.units < 1 || pm.units > 99 ? "Informe de 1 a 99." : ""; updatePmFoot(); }
+});
+pmScroll.addEventListener("focusout", e => { if (e.target.id === "uQty" && !(pm.units >= 1)) setUnits(1); });
+$("#pmAdd").addEventListener("click", () => {
+  const v = pmValid(); if (!v.ok) { const er = $("#pmErr"); if (er) er.textContent = v.msg; return; }
+  const qty = pm.p.unidade === "kg" ? pm.grams : pm.units, note = pm.note.trim();
+  if (pm.editIdx > -1) cart.splice(pm.editIdx, 1);
+  const item = { optId: pm.optId, qty, note }, k = lineKey(item), ex = cart.find(i => lineKey(i) === k);
+  if (ex) ex.qty = pm.p.unidade === "kg" ? Math.min(50000, ex.qty + qty) : Math.min(99, ex.qty + qty); else cart.push(item);
+  saveCart(); updateCartUI();
+  const wasCart = pm.editIdx > -1;
+  closeDialog(); toast((wasCart ? "Item atualizado: " : "Adicionado: ") + pm.p.corte);
+  if (wasCart) setTimeout(openCart, 260);
+});
+
+/* ---------- carrinho ---------- */
+let step = 1;
+const form = { nome: "", modo: "entrega", rua: "", numero: "", bairro: "", compl: "", obs: "" };
+function updateCartUI() {
+  const t = totals(), n = cart.length;
+  $("#badge").textContent = n; $("#badge").style.display = n ? "" : "none";
+  $("#hdrTotal").textContent = n ? brl(t.sum) + (t.consult ? "+" : "") : "Meu pedido";
+  const bar = $("#cartBar");
+  bar.hidden = !n;
+  $("#cartBarBtn").innerHTML = "Ver meu pedido • " + n + (n === 1 ? " item" : " itens") + " • " + brl(t.sum) + (t.consult ? "+" : "");
+  document.documentElement.style.setProperty("--bar-h", n && window.innerWidth < 900 ? "74px" : "0px");
+  if (openOv === $("#ovCart")) renderCart();
+}
+function openCart() { step = 1; renderCart(); openDialog($("#ovCart"), $("#cartTitle")); }
+function setStep(n) { step = n; renderCart(); $("#cartBody").scrollTop = 0; $("#cartTitle").focus({ preventScroll: true }); }
+function renderCart() {
+  $$("#steps li").forEach((li, i) => { if (i + 1 === step) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current"); });
+  $("#steps").style.display = cart.length ? "" : "none";
+  if (!cart.length) {
+    $("#cartTitle").textContent = "Meu pedido";
+    $("#cartBody").innerHTML = '<div class="empty-cart">' + ico("bag") + "<h3>Seu pedido está vazio</h3><p>Escolha seus cortes para montar o pedido.</p></div>";
+    $("#cartFoot").innerHTML = '<button type="button" class="btn btn-red btn-block" id="cartContinue">Escolher meus cortes</button>'; return;
+  }
+  if (step === 1) renderStep1(); else if (step === 2) renderStep2(); else renderStep3();
+}
+function totalsHTML() {
+  const t = totals();
+  let h = '<div class="totals"><div class="row"><span>' + (t.consult ? "Subtotal dos itens com preço" : "Total estimado") + "</span><strong>" + brl(t.sum) + "</strong></div>";
+  if (t.consult) h += '<p class="warn alert">Total incompleto: ' + t.consult + (t.consult === 1 ? " item está" : " itens estão") + " com preço sob consulta e não " + (t.consult === 1 ? "entra" : "entram") + " neste subtotal.</p>";
+  h += '<p class="warn">Os valores dos produtos vendidos por peso são estimados. O total será confirmado após a pesagem.</p></div>';
+  return h;
+}
+function renderStep1() {
+  $("#cartTitle").textContent = "Meu pedido";
+  let h = "";
+  cart.forEach((i, idx) => {
+    const o = OPTS[i.optId], kg = o.unidade === "kg";
+    h += '<div class="line"><div><div class="line-name">' + esc(o.corte) + "</div><div class=\"line-sub\">" + esc((o.marca && o.marca !== o.corte ? o.marca + " · " : "") + unitTxt(o)) + "</div>" + (i.note ? '<span class="line-note">' + esc(i.note) + "</span>" : "") + "</div>" +
+      '<div class="line-sum">' + (o.preco ? brl(subtotal(i)) : "Sob consulta") + "</div>" +
+      '<div class="line-ctl">' + (kg
+        ? '<span class="line-sub" style="color:var(--ink);font-weight:600">' + kgTxt(i.qty) + '</span><button type="button" class="btn btn-line btn-sm" data-edit="' + idx + '">Alterar peso</button>'
+        : '<div class="stepper"><button type="button" data-dec="' + idx + '" aria-label="Diminuir ' + esc(o.corte) + '">' + ico("minus") + '</button><span style="min-width:34px;text-align:center;font-weight:600" aria-live="polite">' + i.qty + '</span><button type="button" data-inc="' + idx + '" aria-label="Aumentar ' + esc(o.corte) + '">' + ico("plus") + "</button></div>") +
+      '<button type="button" class="rm" data-rm="' + idx + '" aria-label="Remover ' + esc(o.corte) + '">' + ico("trash") + "Remover</button></div></div>";
+  });
+  $("#cartBody").innerHTML = h + totalsHTML();
+  $("#cartFoot").innerHTML = '<button type="button" class="btn btn-red btn-block" id="toStep2">Continuar</button><button type="button" class="link-btn" id="cartContinue">Adicionar mais itens</button>';
+}
+function renderStep2() {
+  $("#cartTitle").textContent = "Seus dados";
+  const ent = form.modo === "entrega";
+  let h = '<form id="dataForm" novalidate autocomplete="on"><label class="lbl" for="fNome" style="margin-top:0">Nome</label><input class="txt" id="fNome" name="name" autocomplete="name" required value="' + esc(form.nome) + '"><p class="err" id="eNome" role="alert"></p>' +
+    '<fieldset><legend>Como prefere receber?</legend><div class="radios"><label class="' + (ent ? "sel" : "") + '"><input type="radio" name="modo" value="entrega"' + (ent ? " checked" : "") + ">Entrega</label><label class=\"" + (!ent ? "sel" : "") + '"><input type="radio" name="modo" value="retirada"' + (!ent ? " checked" : "") + ">Retirada na loja</label></div></fieldset>";
+  if (ent) h += '<div id="addr"><label class="lbl" for="fRua">Endereço</label><input class="txt" id="fRua" autocomplete="street-address" value="' + esc(form.rua) + '"><p class="err" id="eRua" role="alert"></p>' +
+    '<div class="two"><div><label class="lbl" for="fBairro">Bairro</label><input class="txt" id="fBairro" value="' + esc(form.bairro) + '"><p class="err" id="eBairro" role="alert"></p></div><div><label class="lbl" for="fNum">Número</label><input class="txt" id="fNum" inputmode="numeric" value="' + esc(form.numero) + '"><p class="err" id="eNum" role="alert"></p></div></div>' +
+    '<label class="lbl" for="fCompl">Complemento <span style="font-weight:400;color:var(--muted)">(opcional)</span></label><input class="txt" id="fCompl" value="' + esc(form.compl) + '"></div>' +
+    '<p class="info">Taxa de entrega, disponibilidade e formas de pagamento serão confirmadas pelo WhatsApp.</p>';
+  else h += '<p class="info">Retirada em ' + esc(STORE.endereco) + ". Disponibilidade e formas de pagamento serão confirmadas pelo WhatsApp.</p>";
+  h += '<label class="lbl" for="fObs">Observações gerais <span style="font-weight:400;color:var(--muted)">(opcional)</span></label><textarea class="txt" id="fObs" rows="3" maxlength="400">' + esc(form.obs) + "</textarea></form>";
+  $("#cartBody").innerHTML = h;
+  $("#cartFoot").innerHTML = '<button type="button" class="btn btn-red btn-block" id="toStep3">Revisar pedido</button><button type="button" class="link-btn" id="backStep1">Voltar aos itens</button>';
+}
+function readForm() {
+  const g = id => { const el = $("#" + id); return el ? el.value.trim() : null; };
+  const m = $("input[name=modo]:checked"); if (m) form.modo = m.value;
+  const v = { nome: g("fNome"), rua: g("fRua"), numero: g("fNum"), bairro: g("fBairro"), compl: g("fCompl"), obs: g("fObs") };
+  Object.keys(v).forEach(k => { if (v[k] !== null) form[k] = v[k]; });
+}
+function validateForm() {
+  readForm(); let first = null; const bad = (id, eid, msg) => { $("#" + eid).textContent = msg; $("#" + id).classList.add("bad"); $("#" + id).setAttribute("aria-invalid", "true"); first = first || $("#" + id); };
+  $$(".err", $("#dataForm")).forEach(e => e.textContent = ""); $$(".txt", $("#dataForm")).forEach(e => { e.classList.remove("bad"); e.removeAttribute("aria-invalid"); });
+  if (form.nome.length < 2) bad("fNome", "eNome", "Informe seu nome.");
+  if (form.modo === "entrega") {
+    if (form.rua.length < 3) bad("fRua", "eRua", "Informe o endereço.");
+    if (!form.numero) bad("fNum", "eNum", "Informe o número.");
+    if (form.bairro.length < 2) bad("fBairro", "eBairro", "Informe o bairro.");
+  }
+  if (first) { first.focus(); return false; } return true;
+}
+function buildMessage() {
+  const t = totals(), L = [];
+  L.push("Olá, MaxBoi! Gostaria de solicitar este pedido:", "", "NOME: " + form.nome, "MODALIDADE: " + (form.modo === "entrega" ? "entrega" : "retirada"), "", "ITENS:");
+  cart.forEach(i => {
+    const o = OPTS[i.optId], kg = o.unidade === "kg";
+    L.push("• " + o.corte + (o.marca && o.marca !== o.corte ? " — " + o.marca : "") + (o.cong ? " (congelado)" : ""));
+    L.push((kg ? "Peso solicitado: " : "Quantidade: ") + qtyTxt(i));
+    L.push("Preço por " + (kg ? "kg" : o.unidade === "un" ? "unidade" : "pacote") + ": " + (o.preco ? brl(o.preco) : "preço sob consulta"));
+    L.push("Subtotal estimado: " + (o.preco ? brl(subtotal(i)) : "sob consulta (não incluído no total)"));
+    if (i.note) L.push("Observações: " + i.note);
+    L.push("");
+  });
+  L.push((t.consult ? "SUBTOTAL ESTIMADO DOS ITENS COM PREÇO: " : "TOTAL ESTIMADO DOS PRODUTOS: ") + brl(t.sum));
+  if (t.consult) L.push("Atenção: " + t.consult + (t.consult === 1 ? " item está" : " itens estão") + " com preço sob consulta e não " + (t.consult === 1 ? "está incluído" : "estão incluídos") + " no subtotal.");
+  if (form.modo === "entrega") L.push("ENTREGA: valor a confirmar", "", "ENDEREÇO: " + form.rua + ", " + form.numero + " — " + form.bairro + (form.compl ? " — " + form.compl : ""));
+  if (form.obs) L.push("OBSERVAÇÕES GERAIS: " + form.obs);
+  L.push("", "Aguardo a confirmação da disponibilidade, do peso final, do valor total e da forma de pagamento.");
+  return L.join("\n");
+}
+function renderStep3() {
+  $("#cartTitle").textContent = "Revisar pedido";
+  const ent = form.modo === "entrega";
+  let h = '<div class="review-block"><h3>Cliente</h3><p><b>' + esc(form.nome) + "</b></p><p>" + (ent ? "Entrega" : "Retirada na loja") + "</p>" +
+    (ent ? "<p>" + esc(form.rua + ", " + form.numero + " — " + form.bairro + (form.compl ? " — " + form.compl : "")) + "</p>" : "") + (form.obs ? "<p>Obs.: " + esc(form.obs) + "</p>" : "") + "</div>";
+  h += '<div class="review-block"><h3>Itens</h3>' + cart.map(i => { const o = OPTS[i.optId]; return "<p><b>" + esc(o.corte) + "</b>" + (o.marca && o.marca !== o.corte ? " — " + esc(o.marca) : "") + "<br>" + esc(qtyTxt(i)) + " · " + (o.preco ? brl(subtotal(i)) : "sob consulta") + (i.note ? "<br><i>" + esc(i.note) + "</i>" : "") + "</p>"; }).join("") + "</div>";
+  h += totalsHTML() + '<p class="info">' + (ent ? "Taxa de entrega, disponibilidade e formas de pagamento serão confirmadas pelo WhatsApp." : "Disponibilidade e formas de pagamento serão confirmadas pelo WhatsApp.") + '</p><details class="msg"><summary>Ver mensagem que será enviada</summary><pre id="msgPre">' + esc(buildMessage()) + "</pre></details>";
+  $("#cartBody").innerHTML = h;
+  $("#cartFoot").innerHTML = '<a class="btn btn-red btn-block" id="sendWa" target="_blank" rel="noopener" href="' + waLink(buildMessage()) + '">' + ico("wa") + 'Enviar pedido pelo WhatsApp</a><button type="button" class="btn btn-line btn-block btn-sm" id="copyMsg">' + ico("copy") + 'Copiar resumo do pedido</button><p class="after">Abrir o WhatsApp não envia o pedido. Envie a mensagem lá e aguarde a confirmação da loja.</p><button type="button" class="link-btn" id="backStep2">Voltar e editar</button>';
+}
+async function copyText(t) {
+  try { await navigator.clipboard.writeText(t); return true; } catch (e) {
+    const ta = document.createElement("textarea"); ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select();
+    let ok = false; try { ok = document.execCommand("copy"); } catch (x) { } ta.remove(); return ok;
+  }
+}
+$("#ovCart").addEventListener("click", async e => {
+  const q = s => e.target.closest(s);
+  let b;
+  if ((b = q("[data-inc]"))) { const i = cart[+b.dataset.inc]; i.qty = Math.min(99, i.qty + 1); saveCart(); updateCartUI(); const nb = $('[data-inc="' + b.dataset.inc + '"]'); nb && nb.focus(); }
+  else if ((b = q("[data-dec]"))) { const i = cart[+b.dataset.dec]; if (i.qty > 1) { i.qty--; saveCart(); updateCartUI(); const nb = $('[data-dec="' + b.dataset.dec + '"]'); nb && nb.focus(); } else { cart.splice(+b.dataset.dec, 1); saveCart(); updateCartUI(); $("#cartTitle").focus(); } }
+  else if ((b = q("[data-rm]"))) { cart.splice(+b.dataset.rm, 1); saveCart(); updateCartUI(); $("#cartTitle").focus(); }
+  else if ((b = q("[data-edit]"))) {
+    const idx = +b.dataset.edit, i = cart[idx], o = OPTS[i.optId], p = PRODUCTS.find(x => x.opts.indexOf(o) > -1);
+    closeDialog(); setTimeout(() => { pm.p = p; Object.assign(pm, { optId: i.optId, grams: i.qty, units: 1, note: i.note, editIdx: idx }); renderProduct(); openDialog($("#ovProduct"), $("#pmTitle")); }, 260);
+  }
+  else if (q("#cartContinue")) { closeDialog(); setTimeout(scrollToCatalog, 220); }
+  else if (q("#toStep2")) setStep(2);
+  else if (q("#backStep1")) { readForm(); setStep(1); }
+  else if (q("#toStep3")) { if (validateForm()) setStep(3); }
+  else if (q("#backStep2")) setStep(2);
+  else if (q("#copyMsg")) { const ok = await copyText(buildMessage()); toast(ok ? "Resumo copiado" : "Não foi possível copiar. Use “Ver mensagem”."); }
+  else if (q("#sendWa")) { setTimeout(() => toast("Envie a mensagem no WhatsApp para a loja receber o pedido"), 400); }
+});
+$("#ovCart").addEventListener("change", e => {
+  if (e.target.name === "modo") { readForm(); renderStep2(); const r = $("input[name=modo]:checked"); r && r.focus(); }
+});
+$("#ovCart").addEventListener("input", e => { if (e.target.closest("#dataForm")) readForm(); });
+
+/* ---------- eventos da página ---------- */
+document.addEventListener("click", e => {
+  const o = e.target.closest("[data-open]"); if (o) { openProduct(o.dataset.open); return; }
+  const c = e.target.closest(".cat-chip"); if (c) { state.cat = c.dataset.cat; renderCatalog(); scrollToCatalog(); return; }
+  const ar = e.target.closest("[data-areaf]"); if (ar) { state.area = ar.dataset.areaf; state.cat = ""; renderCatalog(); return; }
+  const en = e.target.closest(".entry"); if (en) { state.area = state.area === en.dataset.area ? "" : en.dataset.area; state.cat = ""; renderCatalog(); scrollToCatalog(); return; }
+  if (e.target.closest("[data-clear]")) clearFilters();
+  const gt = e.target.closest("[data-goto]");
+  if (gt) { if (gt.dataset.goto === "contato") $("#contato").scrollIntoView({ behavior: "smooth" }); else { state.area = gt.dataset.goto; state.cat = ""; renderCatalog(); scrollToCatalog(); } }
+});
+$("#clearFilters").addEventListener("click", clearFilters);
+$("#clearQ").addEventListener("click", () => { setQuery(""); $("#q").focus(); });
+$("#q").addEventListener("input", e => setQuery(e.target.value, "q"));
+$("#qTop").addEventListener("input", e => { setQuery(e.target.value, "qTop"); });
+$("#qTop").addEventListener("keydown", e => { if (e.key === "Enter") scrollToCatalog(); });
+$("#searchToggle").addEventListener("click", () => { scrollToCatalog(); setTimeout(() => $("#q").focus({ preventScroll: true }), 450); });
+$("#brandSel").addEventListener("change", e => { state.brand = e.target.value; renderCatalog(); });
+$("#ctaExplore").addEventListener("click", scrollToCatalog);
+$("#ctaBbq").addEventListener("click", () => { state.area = "churrasco"; state.cat = ""; renderCatalog(); scrollToCatalog(); });
+$("#brandBtn").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+$("#cartBtn").addEventListener("click", openCart);
+$("#cartBarBtn").addEventListener("click", openCart);
+window.addEventListener("resize", updateCartUI);
+let lastY = 0;
+window.addEventListener("scroll", () => { $("#header").classList.toggle("compact", window.scrollY > 80); }, { passive: true });
+window.addEventListener("storage", e => { if (e.key === LS) { cart = loadCart(); updateCartUI(); } });
+
+/* ---------- init ---------- */
+brandsList().forEach(b => { const op = document.createElement("option"); op.value = b; op.textContent = b; $("#brandSel").appendChild(op); });
+$("#fAddr").textContent = STORE.endereco;
+$("#fHours").innerHTML = STORE.horarios.map(h => "<p>" + esc(h) + "</p>").join("");
+$("#fWa").href = waLink("Olá, MaxBoi!"); $("#fPhone").textContent = STORE.telefoneExibicao;
+$("#fIg").href = "https://www.instagram.com/" + STORE.instagram + "/"; $("#fIgT").textContent = "@" + STORE.instagram;
+cart = loadCart();
+renderCatalog(); updateCartUI();
+window.__maxboi = { PRODUCTS, OPTS, RAW, get cart() { return cart; }, buildMessage, subtotal, form };
+})();
+</script>
+</body>
+</html>
