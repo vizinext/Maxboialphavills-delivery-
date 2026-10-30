@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MaxBoi Alphaville — Carnes nobres com entrega em Alphaville</title>
+<meta name="description" content="Açougue MaxBoi Alphaville, desde 1989. Picanha, Black Angus, Wagyu, espetos temperados e cortes do dia a dia. Peça pelo WhatsApp e receba em casa.">
+<meta name="theme-color" content="#111111">
+<meta property="og:title" content="MaxBoi Alphaville — Carnes nobres com entrega">
+<meta property="og:description" content="Cortes selecionados, preço justo e qualidade de verdade, desde 1989. Peça pelo WhatsApp.">
+<meta property="og:image" content="hero.jpg">
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#db2c28; --red-dark:#b81f1c; --green:#1fa855; --green-dark:#178a45;
+  --ink:#111; --ink-2:#1b1b1b; --ink-3:#262626; --muted:#a9a39c; --line:#2f2c29;
+  --paper:#f7f5f2; --text-dark:#222; --muted-dark:#666;
+  --f-ui:'Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --f-display:'Abril Fatface',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-ui);background:var(--ink);color:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+section{padding:clamp(56px,9vw,104px) 0}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;line-height:1.08}
+h2{font-size:clamp(30px,5.4vw,48px);margin-bottom:12px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--red)}
+.lead{color:var(--muted);max-width:58ch}
+.center{text-align:center}.center .lead{margin-inline:auto}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 28px;border-radius:999px;font-weight:600;font-size:16px;transition:transform .2s,background .2s,box-shadow .2s;cursor:pointer;border:0}
+.btn svg{width:22px;height:22px;flex:none}
+.btn-wa{background:var(--green);color:#fff;box-shadow:0 10px 30px -10px rgba(31,168,85,.8)}
+.btn-wa:hover{background:var(--green-dark);transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.4);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-2px)}
+
+/* topo */
+.topbar{background:var(--red);font-size:13px;font-weight:500;text-align:center;padding:8px 16px}
+header{position:sticky;top:0;z-index:40;background:rgba(17,17,17,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+header img{height:38px;width:auto}
+header nav{display:none;gap:26px;font-size:14px;color:#ddd}
+header nav a:hover{color:#fff}
+header .btn{min-height:42px;padding:0 18px;font-size:14px}
+@media(min-width:900px){header nav{display:flex}}
+
+/* hero */
+.hero{position:relative;padding:clamp(70px,12vw,140px) 0 clamp(60px,9vw,110px);isolation:isolate;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:url(hero.jpg) center/cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.72) 55%,rgba(0,0,0,.45) 100%);z-index:-1}
+.hero .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(219,44,40,.15);border:1px solid rgba(219,44,40,.5);color:#ffb3b0;font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.hero h1{font-size:clamp(38px,7.6vw,72px);max-width:14ch;margin-bottom:18px}
+.hero h1 span{color:var(--red)}
+.hero p{font-size:clamp(16px,2vw,19px);color:#e3e3e3;max-width:50ch;margin-bottom:28px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.trust{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:34px;font-size:14px;color:#d8d8d8}
+.trust div{display:flex;align-items:center;gap:8px}
+.trust svg{width:18px;height:18px;color:var(--red);flex:none}
+
+/* números */
+.stats{background:var(--ink-2);border-block:1px solid var(--line);padding:30px 0}
+.stats .wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;text-align:center}
+.stats b{display:block;font-family:var(--f-display);font-weight:400;font-size:clamp(30px,5vw,42px);color:var(--red);line-height:1}
+.stats span{font-size:13px;color:var(--muted)}
+@media(min-width:760px){.stats .wrap{grid-template-columns:repeat(4,1fr)}}
+
+/* benefícios */
+.benefits{display:grid;gap:16px;margin-top:40px}
+.benefit{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:26px}
+.benefit .ic{width:48px;height:48px;border-radius:12px;background:rgba(219,44,40,.14);color:var(--red);display:grid;place-items:center;margin-bottom:16px}
+.benefit .ic svg{width:26px;height:26px}
+.benefit h3{font-family:var(--f-ui);font-weight:600;font-size:18px;margin-bottom:6px}
+.benefit p{color:var(--muted);font-size:15px}
+@media(min-width:700px){.benefits{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.benefits{grid-template-columns:repeat(4,1fr)}}
+
+/* produtos */
+.light{background:var(--paper);color:var(--text-dark)}
+.light .lead{color:var(--muted-dark)}
+.products{display:grid;gap:18px;margin-top:40px}
+.prod{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 6px 22px rgba(0,0,0,.08);display:flex;flex-direction:column}
+.prod .media{aspect-ratio:4/3;overflow:hidden;position:relative;background:#222}
+.prod .media img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.prod:hover .media img{transform:scale(1.05)}
+.prod .tag{position:absolute;left:12px;top:12px;background:var(--red);color:#fff;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px}
+.prod .body{padding:20px;display:flex;flex-direction:column;flex:1}
+.prod h3{font-size:26px;margin-bottom:4px}
+.prod .brands{font-size:13px;color:var(--muted-dark);margin-bottom:14px}
+.prod .price{margin-top:auto;margin-bottom:14px}
+.prod .price small{display:block;font-size:12px;color:var(--muted-dark);text-transform:uppercase;letter-spacing:.05em}
+.prod .price strong{font-size:24px;font-weight:700;color:var(--ink)}
+.prod .price em{font-style:normal;color:var(--muted-dark);font-size:14px}
+.prod .btn{min-height:48px;font-size:15px;width:100%}
+.note{font-size:12.5px;color:var(--muted-dark);margin-top:22px;text-align:center}
+@media(min-width:640px){.products{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.products{grid-template-columns:repeat(3,1fr)}}
+
+/* kit */
+.kit{display:grid;gap:30px;align-items:center}
+.kit-img{border-radius:20px;overflow:hidden;aspect-ratio:4/5;max-height:560px}
+.kit-img img{width:100%;height:100%;object-fit:cover}
+.kit ul{list-style:none;margin:22px 0 28px;display:grid;gap:12px}
+.kit li{display:flex;gap:12px;align-items:flex-start;color:#e5e5e5}
+.kit li svg{width:22px;height:22px;color:var(--green);flex:none;margin-top:2px}
+@media(min-width:900px){.kit{grid-template-columns:1fr 1.1fr;gap:60px}}
+
+/* passos */
+.steps{display:grid;gap:18px;margin-top:40px;counter-reset:s}
+.step{position:relative;padding:28px 24px 24px;border-radius:16px;background:#fff;box-shadow:0 6px 22px rgba(0,0,0,.06)}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-16px;left:24px;width:40px;height:40px;border-radius:50%;background:var(--red);color:#fff;font-weight:700;display:grid;place-items:center}
+.step h3{font-family:var(--f-ui);font-weight:600;font-size:18px;margin:8px 0 6px}
+.step p{color:var(--muted-dark);font-size:15px}
+@media(min-width:800px){.steps{grid-template-columns:repeat(3,1fr)}}
+
+/* faq */
+.faq{max-width:780px;margin:36px auto 0;display:grid;gap:12px}
+.faq details{background:var(--ink-2);border:1px solid var(--line);border-radius:14px;padding:0 22px}
+.faq summary{list-style:none;cursor:pointer;font-weight:600;padding:18px 0;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:24px;color:var(--red);line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--muted);padding-bottom:18px;font-size:15px}
+
+/* cta final */
+.final{background:linear-gradient(135deg,#7a0f0d,var(--red));text-align:center}
+.final h2{max-width:18ch;margin-inline:auto}
+.final p{color:#ffe1df;max-width:52ch;margin:0 auto 28px}
+.final .btn-wa{box-shadow:0 14px 40px -10px rgba(0,0,0,.5)}
+.final img{width:110px;margin:0 auto 18px}
+
+/* rodapé */
+footer{background:#0a0a0a;padding:50px 0 120px;font-size:14px;color:#cfcfcf}
+footer .grid{display:grid;gap:28px}
+footer img.logo{height:46px;width:auto;margin-bottom:12px}
+footer h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#888;margin-bottom:8px;font-weight:600}
+footer a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+footer .copy{border-top:1px solid #222;margin-top:34px;padding-top:20px;font-size:12px;color:#777}
+@media(min-width:800px){footer .grid{grid-template-columns:1.4fr 1fr 1fr 1fr}footer{padding-bottom:50px}}
+
+/* botão flutuante e barra mobile */
+.float-wa{position:fixed;right:20px;bottom:20px;z-index:50;width:62px;height:62px;border-radius:50%;background:var(--green);display:none;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4);animation:pulse 2.4s infinite}
+.float-wa svg{width:32px;height:32px;color:#fff}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(31,168,85,.6)}70%{box-shadow:0 0 0 18px rgba(31,168,85,0)}100%{box-shadow:0 0 0 0 rgba(31,168,85,0)}}
+.mbar{position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(17,17,17,.96);border-top:1px solid var(--line);transform:translateY(110%);transition:transform .3s}
+.mbar.show{transform:none}
+.mbar .btn{width:100%}
+@media(min-width:800px){.mbar{display:none}.float-wa{display:grid}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.02c0-5.2 4.24-9.44 9.45-9.44a9.4 9.4 0 0 1 6.68 2.77 9.38 9.38 0 0 1 2.76 6.68c0 5.21-4.24 9.44-9.44 9.44M20.08 3.9A11.3 11.3 0 0 0 12.05.6C5.8.6.7 5.7.7 11.95c0 2 .52 3.95 1.52 5.67L.6 23.4l5.9-1.55a11.3 11.3 0 0 0 5.54 1.41h.01c6.26 0 11.35-5.09 11.36-11.35 0-3.03-1.18-5.88-3.33-8.02"/></symbol>
+  <symbol id="check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M20 6 9 17l-5-5"/></symbol>
+</svg>
+
+<div class="topbar">Peça pelo WhatsApp e receba seus cortes em casa · Alphaville e região</div>
+
+<header>
+  <div class="wrap">
+    <a href="#topo" aria-label="MaxBoi Alphaville — início"><img src="logo-maxboi-alphaville.png" alt="MaxBoi Alphaville" width="140" height="38"></a>
+    <nav aria-label="Seções">
+      <a href="#cortes">Cortes</a>
+      <a href="#churrasco">Churrasco</a>
+      <a href="#como-pedir">Como pedir</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <a class="btn btn-wa wa" data-msg="Olá! Vim pelo site e quero fazer um pedido." href="#"><svg><use href="#wa"/></svg>Pedir agora</a>
+  </div>
+</header>
+
+<main id="topo">
+
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">★ Tradição desde 1989</span>
+    <h1>Carne de verdade, <span>na sua porta.</span></h1>
+    <p>Picanha, Black Angus, Wagyu, espetos temperados e os cortes do dia a dia. Escolha pelo WhatsApp e a MaxBoi separa, embala e entrega para você.</p>
+    <div class="ctas">
+      <a class="btn btn-wa wa" data-msg="Olá! Vim pelo site e quero fazer um pedido." href="#"><svg><use href="#wa"/></svg>Fazer meu pedido no WhatsApp</a>
+      <a class="btn btn-ghost" href="#cortes">Ver cortes e preços</a>
+    </div>
+    <div class="trust">
+      <div><svg><use href="#check"/></svg>Mais de 35 anos de açougue</div>
+      <div><svg><use href="#check"/></svg>Cortes no ponto que você pedir</div>
+      <div><svg><use href="#check"/></svg>Atendimento humano, sem robô</div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div><b>1989</b><span>no mercado de carnes</span></div>
+    <div><b>+150</b><span>itens no catálogo</span></div>
+    <div><b>7 dias</b><span>de atendimento por semana</span></div>
+    <div><b>1 clique</b><span>para pedir no WhatsApp</span></div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap center">
+    <span class="eyebrow">Por que MaxBoi</span>
+    <h2>O açougue de confiança de Alphaville</h2>
+    <p class="lead">Você não precisa sair de casa nem enfrentar fila para comer uma carne de qualidade.</p>
+    <div class="benefits" style="text-align:left">
+      <div class="benefit reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Procedência garantida</h3>
+        <p>Black Angus, Wagyu, Cabana Juramento, Gran Campeon e outras marcas de referência.</p>
+      </div>
+      <div class="benefit reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></div>
+        <h3>Do seu jeito</h3>
+        <p>Bife fino, em cubos, moída na hora, sem gordura ou com capa: o açougueiro corta como você pedir.</p>
+      </div>
+      <div class="benefit reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.3a1 1 0 0 0-.2-.6L18.3 9H14v8h1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></div>
+        <h3>Entrega na sua casa</h3>
+        <p>Pedido embalado com cuidado e entregue em Alphaville e região. Prefere buscar? Também pode.</p>
+      </div>
+      <div class="benefit reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Preço justo</h3>
+        <p>Do corte do dia a dia ao premium para ocasiões especiais, com opções para todos os bolsos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="cortes">
+  <div class="wrap center">
+    <span class="eyebrow">Mais pedidos</span>
+    <h2>Escolha seu corte</h2>
+    <p class="lead">Toque em “Quero este” e a mensagem já vai pronta para o WhatsApp da loja.</p>
+    <div class="products" style="text-align:left">
+      <article class="prod reveal">
+        <div class="media"><img src="foto-espeto-cortes.jpg" alt="Picanha fatiada no espeto" loading="lazy" width="1000" height="774"><span class="tag">Campeã de vendas</span></div>
+        <div class="body">
+          <h3>Picanha</h3>
+          <p class="brands">Seleção MaxBoi, Black Angus, Cabana Juramento, FSW, Wagyu e mais</p>
+          <p class="price"><small>a partir de</small><strong>R$ 96,98</strong> <em>/kg</em></p>
+          <a class="btn btn-red wa" data-msg="Olá! Quero pedir PICANHA. Quais marcas vocês têm hoje?" href="#"><svg><use href="#wa"/></svg>Quero este</a>
+        </div>
+      </article>
+      <article class="prod reveal">
+        <div class="media"><img src="foto-bife-tabua.jpg" alt="Bife de ancho na tábua" loading="lazy" width="900" height="1352"><span class="tag">Premium</span></div>
+        <div class="body">
+          <h3>Ancho</h3>
+          <p class="brands">Black Angus, Bassi, Seleção 700, Da Casa</p>
+          <p class="price"><small>a partir de</small><strong>R$ 84,98</strong> <em>/kg</em></p>
+          <a class="btn btn-red wa" data-msg="Olá! Quero pedir ANCHO. Quais marcas vocês têm hoje?" href="#"><svg><use href="#wa"/></svg>Quero este</a>
+        </div>
+      </article>
+      <article class="prod reveal">
+        <div class="media"><img src="hero.jpg" alt="Cortes de fraldinha" loading="lazy" width="1800" height="694"></div>
+        <div class="body">
+          <h3>Fraldinha</h3>
+          <p class="brands">Montana, Bassi, Seleção MaxBoi, Black Angus, Red Gran Campeon</p>
+          <p class="price"><small>a partir de</small><strong>R$ 59,98</strong> <em>/kg</em></p>
+          <a class="btn btn-red wa" data-msg="Olá! Quero pedir FRALDINHA. Quais marcas vocês têm hoje?" href="#"><svg><use href="#wa"/></svg>Quero este</a>
+        </div>
+      </article>
+      <article class="prod reveal">
+        <div class="media"><img src="foto-bife-madeira.jpg" alt="Bife bovino em tábua de madeira" loading="lazy" width="900" height="1350"></div>
+        <div class="body">
+          <h3>Bifes do dia a dia</h3>
+          <p class="brands">Patinho, coxão mole, contrafilé: cortados na espessura que você quiser</p>
+          <p class="price"><small>preço</small><strong>Consulte</strong> <em>no WhatsApp</em></p>
+          <a class="btn btn-red wa" data-msg="Olá! Quero pedir carne para BIFE. Quais cortes vocês têm hoje?" href="#"><svg><use href="#wa"/></svg>Quero este</a>
+        </div>
+      </article>
+      <article class="prod reveal">
+        <div class="media"><img src="foto-moida.jpg" alt="Carne moída fresca" loading="lazy" width="900" height="600"><span class="tag">Moída na hora</span></div>
+        <div class="body">
+          <h3>Carne moída</h3>
+          <p class="brands">Você escolhe o corte e a gente mói na hora</p>
+          <p class="price"><small>preço</small><strong>Consulte</strong> <em>no WhatsApp</em></p>
+          <a class="btn btn-red wa" data-msg="Olá! Quero pedir CARNE MOÍDA. Quais cortes vocês recomendam?" href="#"><svg><use href="#wa"/></svg>Quero este</a>
+        </div>
+      </article>
+      <article class="prod reveal">
+        <div class="media"><img src="foto-cubos.jpg" alt="Carne em cubos" loading="lazy" width="900" height="600"></div>
+        <div class="body">
+          <h3>Carne em cubos</h3>
+          <p class="brands">Para panela, ensopado, strogonoff e espetinho</p>
+          <p class="price"><small>preço</small><strong>Consulte</strong> <em>no WhatsApp</em></p>
+          <a class="btn btn-red wa" data-msg="Olá! Quero pedir CARNE EM CUBOS. Quais cortes vocês têm hoje?" href="#"><svg><use href="#wa"/></svg>Quero este</a>
+        </div>
+      </article>
+    </div>
+    <p class="note">Preços de referência do catálogo de 17/10/2026, sujeitos a alteração e disponibilidade. Produtos vendidos por peso têm o valor final confirmado após a pesagem. Fotos ilustrativas.</p>
+  </div>
+</section>
+
+<section id="churrasco">
+  <div class="wrap kit">
+    <div class="kit-img reveal"><img src="foto-espeto-cortes.jpg" alt="Espeto de picanha na brasa" loading="lazy" width="1000" height="774"></div>
+    <div class="reveal">
+      <span class="eyebrow">Churrasco sem dor de cabeça</span>
+      <h2>Diga quantas pessoas. A gente monta o churrasco.</h2>
+      <p class="lead">Fale quantos convidados e quanto quer gastar. O açougueiro sugere cortes e quantidades, e você recebe tudo pronto para a grelha.</p>
+      <ul>
+        <li><svg><use href="#check"/></svg><span>Picanha, fraldinha, ancho, chorizo, costela, tomahawk e mais</span></li>
+        <li><svg><use href="#check"/></svg><span>Espetos temperados prontos: carne, frango, coração, kafta, linguiça, medalhão com bacon</span></li>
+        <li><svg><use href="#check"/></svg><span>Queijo coalho, pão de alho, carvão e acendedores no mesmo pedido</span></li>
+        <li><svg><use href="#check"/></svg><span>Quantidade calculada para não faltar nem sobrar</span></li>
+      </ul>
+      <a class="btn btn-wa wa" data-msg="Olá! Quero montar um churrasco para ___ pessoas. Podem me ajudar com os cortes e as quantidades?" href="#"><svg><use href="#wa"/></svg>Montar meu churrasco</a>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="como-pedir">
+  <div class="wrap center">
+    <span class="eyebrow">Simples assim</span>
+    <h2>Pedir leva menos de 2 minutos</h2>
+    <div class="steps" style="text-align:left">
+      <div class="step reveal"><h3>Chame no WhatsApp</h3><p>Toque no botão verde. A conversa já abre com a mensagem pronta.</p></div>
+      <div class="step reveal"><h3>Diga o que precisa</h3><p>Cortes, quantidades e como quer que venha cortado. Se tiver dúvida, o açougueiro ajuda.</p></div>
+      <div class="step reveal"><h3>Receba em casa</h3><p>Confirmamos o valor após a pesagem e entregamos no seu endereço, ou você retira na loja.</p></div>
+    </div>
+    <div style="margin-top:40px">
+      <a class="btn btn-wa wa" data-msg="Olá! Vim pelo site e quero fazer um pedido." href="#"><svg><use href="#wa"/></svg>Começar meu pedido</a>
+    </div>
+  </div>
+</section>
+
+<section id="duvidas">
+  <div class="wrap center">
+    <span class="eyebrow">Dúvidas frequentes</span>
+    <h2>Antes de pedir</h2>
+    <div class="faq" style="text-align:left">
+      <details><summary>Vocês entregam no meu endereço?</summary><p>Entregamos em Alphaville, Santana de Parnaíba e região. Mande seu endereço no WhatsApp que confirmamos o prazo e a taxa na hora.</p></details>
+      <details><summary>Como sei o valor final do pedido?</summary><p>Carnes são vendidas por peso. Passamos uma estimativa ao montar o pedido e confirmamos o valor exato após a pesagem, antes de sair para entrega.</p></details>
+      <details><summary>Posso pedir o corte do meu jeito?</summary><p>Pode. Bife fino ou grosso, em cubos, moído, com ou sem gordura, porcionado em pacotes: é só dizer.</p></details>
+      <details><summary>Quais são os horários?</summary><p>Segunda a sábado, das 8h às 20h. Domingo, das 8h às 14h.</p></details>
+      <details><summary>Posso retirar na loja?</summary><p>Sim. Faça o pedido pelo WhatsApp e retire na Av. Vênus, 280, em Alphaville.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <img src="mascote.png" alt="" width="110" height="110">
+    <h2>O churrasco do fim de semana começa aqui.</h2>
+    <p>Fale agora com a MaxBoi Alphaville e garanta os melhores cortes antes que acabem.</p>
+    <a class="btn btn-wa wa" data-msg="Olá! Vim pelo site e quero fazer um pedido." href="#"><svg><use href="#wa"/></svg>Chamar no WhatsApp</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <img class="logo" src="logo-maxboi-alphaville.png" alt="MaxBoi Alphaville" width="170" height="46">
+        <p>Cortes selecionados, preço justo e qualidade de verdade, desde 1989.</p>
+      </div>
+      <div>
+        <h4>Endereço</h4>
+        <p><a id="maps" href="#" target="_blank" rel="noopener">Av. Vênus, 280<br>Alphaville, Santana de Parnaíba/SP</a></p>
+      </div>
+      <div>
+        <h4>Horários</h4>
+        <p>Segunda a sábado: 8h às 20h<br>Domingo: 8h às 14h</p>
+      </div>
+      <div>
+        <h4>Fale com a gente</h4>
+        <p><a class="wa" data-msg="Olá! Vim pelo site." href="#">WhatsApp (11) 91471-8398</a></p>
+        <p><a href="https://instagram.com/maxboialphaville" target="_blank" rel="noopener">@maxboialphaville</a></p>
+      </div>
+    </div>
+    <p class="copy">© <span id="ano"></span> MaxBoi Alphaville. Preços e disponibilidade sujeitos a alteração.</p>
+  </div>
+</footer>
+
+<a class="float-wa wa" data-msg="Olá! Vim pelo site e quero fazer um pedido." href="#" aria-label="Pedir pelo WhatsApp"><svg><use href="#wa"/></svg></a>
+<div class="mbar" id="mbar"><a class="btn btn-wa wa" data-msg="Olá! Vim pelo site e quero fazer um pedido." href="#"><svg><use href="#wa"/></svg>Pedir no WhatsApp</a></div>
+
+<script>
+const WHATSAPP = "5511914718398";
+const ENDERECO = "Av. Vênus, 280, Alphaville, Santana de Parnaíba, SP";
+
+document.querySelectorAll(".wa").forEach(a => {
+  a.href = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(a.dataset.msg || "Olá!");
+  a.target = "_blank";
+  a.rel = "noopener";
+});
+document.getElementById("maps").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ENDERECO);
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+// barra fixa no mobile aparece depois que o hero sai da tela
+const mbar = document.getElementById("mbar");
+const hero = document.querySelector(".hero");
+new IntersectionObserver(([e]) => mbar.classList.toggle("show", !e.isIntersecting)).observe(hero);
+
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+</body>
+</html>
